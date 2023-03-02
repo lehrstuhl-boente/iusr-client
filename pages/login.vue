@@ -16,6 +16,10 @@
 <script lang="ts" setup>
   import { useAuthStore } from '../stores/auth.store';
 
+  definePageMeta({
+    middleware: 'unauthenticated'
+  });
+
   const authStore = useAuthStore();
 
   const email = ref('');

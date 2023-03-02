@@ -2,10 +2,9 @@
   <div>
     <header class="shadow-sm bg-white">
       <nav class="container mx-auto p-4 flex justify-between">
-        <NuxtLink to="/">IusR</NuxtLink>
+        <NuxtLink to="/dashboard">IusR</NuxtLink>
         <ul class="flex gap-4">
-          <li><NuxtLink to="/login">Login</NuxtLink></li>
-          <li><NuxtLink to="/register">Register</NuxtLink></li>
+          <li><a @click.prevent="logout">Logout</a></li>
         </ul>
       </nav>
     </header>
@@ -16,6 +15,13 @@
 </template>
 
 <script setup>
+  import { useAuthStore } from '../stores/auth.store';
+
+  const authStore = useAuthStore();
+
+  const logout = () => {
+    authStore.logout();
+  }
 </script>
 
 <style>

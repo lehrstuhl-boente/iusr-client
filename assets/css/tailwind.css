@@ -2,8 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-gray-100;
+@layer base {
+  body {
+    @apply bg-gray-100;
+  }
+  h1 {
+    @apply text-2xl font-bold;
+  }
+  h2 {
+    @apply text-xl font-bold;
+  }
+  a {
+    @apply hover:cursor-pointer;
+  }
 }
 
 @layer components {
@@ -16,4 +27,12 @@ body {
   input {
     @apply p-2 mb-2 rounded-md shadow-sm;
   }
+}
+
+@layer utilities {
+  
+}
+
+.router-link-exact-active {
+  @apply text-primary;
 }

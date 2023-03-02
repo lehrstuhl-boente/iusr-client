@@ -38,6 +38,11 @@ export const useAuthStore = defineStore('auth-store', {
       localStorage.setItem('token', data.accessToken);
       this.user = await $fetch<UserDto>('/users/me', useDefaultFetchParams());
       navigateTo('/dashboard');
+    },
+    logout() {
+      this.user = null;
+      localStorage.removeItem('token');
+      navigateTo('/');
     }
   },
   getters: {

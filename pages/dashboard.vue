@@ -4,7 +4,8 @@
 
 <script lang="ts" setup>
   definePageMeta({
-    middleware: ['authenticated']
+    middleware: 'authenticated',
+    layout: 'authenticated'
   });
 </script>
 
