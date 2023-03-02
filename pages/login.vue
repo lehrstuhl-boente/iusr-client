@@ -1,5 +1,4 @@
 <template>
-  {{ authStore.loggedIn }}
   <div>
     <form action="">
       <input type="text" placeholder="Email" v-model="email">
@@ -8,7 +7,9 @@
       <br>
       <input type="submit" class="btn" @click.prevent="login" value="Login">
     </form>
-    <span v-if="!loginSuccessful">Wrong Credentials.</span>
+    <div class="text-error">
+      <div v-for="msg in errorMessages">{{ msg }}</div>
+    </div>
   </div>
 </template>
 
@@ -19,10 +20,14 @@
 
   const email = ref('');
   const password = ref('');
-  let loginSuccessful = ref(true);
+  const errorMessages = ref([]);
 
   const login = async () => {
-    loginSuccessful.value = await authStore.login({ email: email.value, password: password.value });
+    try {
+      await authStore.login({ email: email.value, password: password.value });
+    } catch(e: any) {
+      errorMessages.value = e.data.message;
+    }
   };
 </script>
 

@@ -1,25 +1,8 @@
 import { defineStore } from 'pinia';
-
-interface User {
-  email: string;
-  isAdmin: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface LoginData {
-  email: string;
-  password: string;
-}
-
-interface RegisterData {
-  email: string;
-  password: string;
-  passwordRepeat: string;
-}
+import { UserDto, LoginDto, RegisterDto } from './dto'
 
 interface AuthStoreState {
-  user: User | null;
+  user: UserDto | null;
 }
 
 export const useAuthStore = defineStore('auth-store', {
@@ -29,30 +12,36 @@ export const useAuthStore = defineStore('auth-store', {
     }
   },
   actions: {
-    async login(credentials: LoginData): Promise<boolean> {
-      try {
-        const data = await $fetch<{ accessToken: string }>('/auth/login', {
-          method: 'POST',
-          body: {
-            email: credentials.email,
-            password: credentials.password
-          },
-          ...useDefaultFetchParams()
-        });
-        localStorage.setItem('token', data.accessToken);
-        this.user = await $fetch<User>('/users/me', useDefaultFetchParams());
-        localStorage.setItem('user', JSON.stringify(this.user));
-        return true;
-      } catch(e) {
-        return false;
-      }
+    async login(credentials: LoginDto) {
+      const data = await $fetch<{ accessToken: string }>('/auth/login', {
+        method: 'POST',
+        body: {
+          email: credentials.email,
+          password: credentials.password
+        },
+        ...useDefaultFetchParams()
+      });
+      localStorage.setItem('token', data.accessToken);
+      this.user = await $fetch<UserDto>('/users/me', useDefaultFetchParams());
+      navigateTo('/dashboard');
     },
-    async register() {
-
+    async register(credentials: RegisterDto) {
+      const data = await $fetch<{ accessToken: string }>('/auth/register', {
+        method: 'POST',
+        body: {
+          email: credentials.email,
+          password: credentials.password,
+          passwordRepeat: credentials.passwordRepeat
+        },
+        ...useDefaultFetchParams()
+      });
+      localStorage.setItem('token', data.accessToken);
+      this.user = await $fetch<UserDto>('/users/me', useDefaultFetchParams());
+      navigateTo('/dashboard');
     }
   },
   getters: {
     loggedIn: (state): boolean => state.user !== null
   },
-  persist: true // save the store so that reinitialization after pageload isn't necessary, by default it's stored in cookies
+  persist: true // save the store to cookies so that reinitialization after reload isn't necessary
 })

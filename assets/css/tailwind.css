@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-50;
+  @apply bg-gray-100;
 }
 
 @layer components {
   .btn {
-    @apply bg-indigo-700 hover:bg-indigo-800 px-3 py-2 rounded-md text-sm text-white cursor-pointer;
+    @apply bg-primary hover:bg-primary-hover active:bg-primary-active px-3 py-2 rounded-md text-sm text-white cursor-pointer;
   }
   .card {
     @apply p-3 rounded-md bg-white shadow-md h-full;
