@@ -18,9 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-const isActive = ref(false);
-
-const { show } = defineProps(['show']);
+const show = ref(false);
 
 const closeModal = () => {
   show.value = false;
