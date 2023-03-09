@@ -32,13 +32,9 @@
 
   const submit = async () => {
     try {
-      const data = await $fetch('/courses', {
-        method: 'POST',
-        body: {
-          title: title.value,
-          description: description.value
-        },
-        ...useDefaultFetchParams()
+      const response = await useApi().post('/courses', {
+        title: title.value,
+        description: description.value
       });
       navigateTo('/dashboard');
     } catch(e: any) {

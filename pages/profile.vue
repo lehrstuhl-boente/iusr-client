@@ -27,8 +27,8 @@
   const user = ref();
 
   try {
-    const data = await $fetch<UserDto>('/users/me', useDefaultFetchParams());
-    user.value = data;
+    const response = await useApi().get<UserDto>('/users/me');
+    user.value = response.data;
   } catch(e) {
     console.error(e);
     error.value = 'Could not fetch user.';

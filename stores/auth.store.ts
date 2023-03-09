@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { LoginUserDto } from '~~/dto/loginUser.dto';
 import { UserDto, LoginDto, RegisterDto } from '../dto'
 
 interface AuthStoreState {
@@ -13,30 +14,22 @@ export const useAuthStore = defineStore('auth-store', {
   },
   actions: {
     async login(credentials: LoginDto) {
-      const data = await $fetch<{ accessToken: string }>('/auth/login', {
-        method: 'POST',
-        body: {
-          email: credentials.email,
-          password: credentials.password
-        },
-        ...useDefaultFetchParams()
+      const { data } = await useApi().post<LoginUserDto>('/auth/login', {
+        email: credentials.email,
+        password: credentials.password
       });
       localStorage.setItem('token', data.accessToken);
-      this.user = await $fetch<UserDto>('/users/me', useDefaultFetchParams());
+      this.user = data;
       navigateTo('/dashboard');
     },
     async register(credentials: RegisterDto) {
-      const data = await $fetch<{ accessToken: string }>('/auth/register', {
-        method: 'POST',
-        body: {
-          email: credentials.email,
-          password: credentials.password,
-          passwordRepeat: credentials.passwordRepeat
-        },
-        ...useDefaultFetchParams()
+      const { data } = await useApi().post<LoginUserDto>('/auth/register', {
+        email: credentials.email,
+        password: credentials.password,
+        passwordRepeat: credentials.passwordRepeat
       });
       localStorage.setItem('token', data.accessToken);
-      this.user = await $fetch<UserDto>('/users/me', useDefaultFetchParams());
+      this.user = data;
       navigateTo('/dashboard');
     },
     logout() {

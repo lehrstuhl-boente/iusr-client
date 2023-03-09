@@ -36,7 +36,7 @@
     try {
       await authStore.login({ email: email.value, password: password.value });
     } catch(e: any) {
-      errorMessages.value = e.data.message;
+      errorMessages.value = e.response.data.message;
     }
   };
 </script>
