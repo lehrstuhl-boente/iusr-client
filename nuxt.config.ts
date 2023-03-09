@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
+  ssr: false,
   app: {
     head: {
       title: 'Nuxt Test',
@@ -8,7 +9,7 @@ export default defineNuxtConfig({
         { name: 'descirption', content: 'This is the description.' }
       ],
       link: [
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' }
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined' }
       ]
     },
   },
@@ -37,7 +38,10 @@ export default defineNuxtConfig({
             xl: '1240px',
           }
         }
-      }
+      },
+      plugins: [
+        require('@tailwindcss/forms')
+      ]
     }
   }
 })

@@ -1,10 +1,15 @@
 <template>
-  <div>
+  <h1>Login to Your Account</h1>
+  <div class="max-w-lg">
     <form action="">
-      <input type="text" placeholder="Email" v-model="email">
-      <br>
-      <input type="password" placeholder="Password" v-model="password">
-      <br>
+      <label>
+        <span>Email</span>
+        <input type="text" placeholder="john.doe@uzh.ch" v-model="email">
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" v-model="password">
+      </label>
       <input type="submit" class="btn" @click.prevent="login" value="Login">
     </form>
     <div class="text-error">
@@ -17,7 +22,8 @@
   import { useAuthStore } from '../stores/auth.store';
 
   definePageMeta({
-    middleware: 'unauthenticated'
+    middleware: 'unauthenticated',
+    layout: 'unauthenticated'
   });
 
   const authStore = useAuthStore();

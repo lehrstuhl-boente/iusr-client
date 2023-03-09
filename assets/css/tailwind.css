@@ -7,25 +7,28 @@
     @apply bg-gray-100;
   }
   h1 {
-    @apply text-2xl font-bold;
+    @apply text-2xl font-bold my-3;
   }
   h2 {
-    @apply text-xl font-bold;
+    @apply text-xl font-bold my-3;
   }
   a {
-    @apply hover:cursor-pointer;
+    @apply hover:cursor-pointer hover:text-primary;
   }
 }
 
 @layer components {
   .btn {
-    @apply bg-primary hover:bg-primary-hover active:bg-primary-active px-3 py-2 rounded-md text-sm text-white cursor-pointer;
+    @apply bg-primary hover:bg-primary-hover active:bg-primary-active px-3 py-2 rounded-md text-sm text-white hover:text-white cursor-pointer;
   }
   .card {
     @apply p-3 rounded-md bg-white shadow-md h-full;
   }
-  input {
-    @apply p-2 mb-2 rounded-md shadow-sm;
+  label {
+    @apply block text-gray-700;
+  }
+  input[type="text"], input[type="password"], textarea {
+    @apply block w-full p-2 mb-2 mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }
 }
 
@@ -34,5 +37,6 @@
 }
 
 .router-link-exact-active {
-  @apply text-primary;
+  @apply text-primary-active;
 }
+

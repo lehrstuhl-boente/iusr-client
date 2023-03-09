@@ -1,12 +1,19 @@
 <template>
-  <div>
+  <h1>Create a New Account</h1>
+  <div class="max-w-lg">
     <form action="">
-      <input type="text" placeholder="Username" v-model="email">
-      <br>
-      <input type="password" placeholder="Password" v-model="password">
-      <br>
-      <input type="password" placeholder="Repeat Password" v-model="passwordRepeat">
-      <br>
+      <label>
+        <span>Email</span>
+        <input type="text" placeholder="john.doe@uzh.ch" v-model="email">
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" v-model="password">
+      </label>
+      <label>
+        <span>Confirm Password</span>
+        <input type="password" v-model="passwordRepeat">
+      </label>
       <input type="submit" class="btn" @click.prevent="register" value="Register">
     </form>
     <div class="text-error">
@@ -19,7 +26,8 @@
   import { useAuthStore } from '../stores/auth.store';
 
   definePageMeta({
-    middleware: 'unauthenticated'
+    middleware: 'unauthenticated',
+    layout: 'unauthenticated'
   });
 
   const authStore = useAuthStore();

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { UserDto, LoginDto, RegisterDto } from './dto'
+import { UserDto, LoginDto, RegisterDto } from '../dto'
 
 interface AuthStoreState {
   user: UserDto | null;
@@ -40,13 +40,16 @@ export const useAuthStore = defineStore('auth-store', {
       navigateTo('/dashboard');
     },
     logout() {
-      this.user = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('auth-store');  // remove the persisted store from localStorage
+      this.user = null;
       navigateTo('/');
     }
   },
   getters: {
     loggedIn: (state): boolean => state.user !== null
   },
-  persist: true // save the store to cookies so that reinitialization after reload isn't necessary
+  persist: {  // save the store in localStorage so that user doesn't need to login again after page reload
+    storage: persistedState.localStorage
+  }
 })
