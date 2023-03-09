@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { UserDto } from '../dto';
+  import { UserDto } from '~~/types';
 
   definePageMeta({
     middleware: 'authenticated'

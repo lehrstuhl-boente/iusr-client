@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { CourseDto } from '~~/dto';
+  import { CourseDto } from '~~/types';
 
   const { course } = defineProps<{ course: CourseDto }>();
 </script>

@@ -12,7 +12,7 @@
       </label>
       <input type="submit" class="btn" @click.prevent="login" value="Login">
     </form>
-    <div class="text-error">
+    <div class="text-alert">
       <div v-for="msg in errorMessages">{{ msg }}</div>
     </div>
   </div>

@@ -15,7 +15,7 @@
       </label>
       <input type="submit" value="Create" class="btn" @click.prevent="submit">
     </form>
-    <div class="text-error">
+    <div class="text-alert">
       <div v-for="msg in errorMessages">{{ msg }}</div>
     </div>
   </div>
@@ -36,9 +36,9 @@
         title: title.value,
         description: description.value
       });
-      navigateTo('/dashboard');
+      navigateTo('/admin/course/' + response.data.id);
     } catch(e: any) {
-      errorMessages.value = e.data.message
+      errorMessages.value = e.response.data.message
       console.error(e);
     }
   }

@@ -7,7 +7,7 @@
     @apply bg-gray-100;
   }
   h1 {
-    @apply text-2xl font-bold my-3;
+    @apply text-2xl font-bold my-3 block;
   }
   h2 {
     @apply text-xl font-bold my-3;
@@ -20,6 +20,9 @@
 @layer components {
   .btn {
     @apply bg-primary hover:bg-primary-hover active:bg-primary-active px-3 py-2 rounded-md text-sm text-white hover:text-white cursor-pointer;
+  }
+  .btn-alert {
+    @apply bg-transparent hover:bg-alert border border-alert text-alert;
   }
   .card {
     @apply p-3 rounded-md bg-white shadow-md h-full;

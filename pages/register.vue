@@ -16,7 +16,7 @@
       </label>
       <input type="submit" class="btn" @click.prevent="register" value="Register">
     </form>
-    <div class="text-error">
+    <div class="text-alert">
       <div v-for="msg in errorMessages">{{ msg }}</div>
     </div>
   </div>
@@ -45,7 +45,7 @@
         passwordRepeat: passwordRepeat.value
       });
     } catch(e: any) {
-      errorMessages.value = e.data.message
+      errorMessages.value = e.response.data.message
     }
   };
 </script>

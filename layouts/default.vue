@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Notification></Notification>
     <header class="shadow-lg bg-white">
       <nav class="container mx-auto p-4 flex justify-between items-center">
         <NuxtLink to="/dashboard">Dashboard</NuxtLink>
@@ -7,7 +8,7 @@
           <li>
             <NuxtLink to="/profile" class="flex">
               <span class="material-icons-outlined mr-1">account_circle</span>
-              {{ authStore.user.email }}
+              {{ authStore.user?.email }}
             </NuxtLink>
           </li>
           <li>
