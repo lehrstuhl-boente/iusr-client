@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Modal></Modal>
     <Notification></Notification>
     <header class="shadow-lg bg-white">
       <nav class="container mx-auto p-4 flex justify-between items-center">

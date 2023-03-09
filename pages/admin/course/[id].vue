@@ -2,24 +2,31 @@
   <SubHeader>
     <BackLink :to="'/course/' + route.params.id">Back to Course</BackLink>
   </SubHeader>
-  <div class="max-w-xl">
+  <div class="flex">
     <h1>Edit Course</h1>
-    <form action="">
-      <label>
-        <span>Course Title</span>
-        <input type="text" placeholder="e.g. Python Basics" v-model="course.title">
-      </label>
-      <label>
-        <span>Description</span>
-        <textarea cols="30" rows="10" v-model="course.description"></textarea>
-      </label>
-      <div class="flex justify-between">
-        <input type="submit" value="Update" class="btn" @click.prevent="submit">
-        <a href="#" class="btn btn-alert" @click="deleteCourse">Delete Course</a>
+  </div>
+  <div class="flex flex-row lg:flex-nowrap flex-wrap-reverse gap-5">
+    <div class="bg-gray-200 lg:basis-8/12 w-full">
+      <a class="btn inline-block">Add Chapter</a>
+    </div>
+    <div class="bg-gray-200 lg:basis-4/12 w-full">
+      <form action="">
+        <label>
+          <span>Course Title</span>
+          <input type="text" placeholder="e.g. Python Basics" v-model="course.title">
+        </label>
+        <label>
+          <span>Description</span>
+          <textarea cols="30" rows="10" v-model="course.description"></textarea>
+        </label>
+        <div class="flex justify-between">
+          <input type="submit" value="Update" class="btn" @click.prevent="submit">
+          <a href="#" class="btn btn-alert" @click="deleteCourse">Delete Course</a>
+        </div>
+      </form>
+      <div class="text-alert mt-3">
+        <div v-for="msg in errorMessages">{{ msg }}</div>
       </div>
-    </form>
-    <div class="text-alert mt-3">
-      <div v-for="msg in errorMessages">{{ msg }}</div>
     </div>
   </div>
 </template>
