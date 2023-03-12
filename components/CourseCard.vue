@@ -1,5 +1,6 @@
 <template>
-  <NuxtLink :to="`/course/${course.id}`" class="bg-white shadow-md hover:shadow-lg rounded-md overflow-hidden hover:cursor-pointer">
+  <NuxtLink :to="`/course/${course.id}`"
+    class="bg-white shadow-md hover:shadow-lg rounded-md overflow-hidden hover:cursor-pointer">
     <div class="bg-gray-200" style="height: 100px;"></div>
     <div class="content p-3">
       <strong>{{ course.title }}</strong>
@@ -8,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { CourseDto } from '~~/types';
+import { CourseDto } from '~~/types';
 
-  const { course } = defineProps<{ course: CourseDto }>();
+const { course } = defineProps<{ course: CourseDto }>();
 </script>
