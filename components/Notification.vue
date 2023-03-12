@@ -5,12 +5,6 @@
     v-if="notificationStore.notification">
     {{ notificationStore.notification?.content }}
   </div>
-
-
-  <!-- Div with all , because tailwind only includes used -->
-  <div class="opacity-0 bg-red-100 border-red-300 text-red-800"></div>
-  <div class="hidden bg-emerald-100 border-emerald-300 text-emerald-800"></div>
-  <div class="hidden bg-amber-100 border-amber-300 text-amber-800"></div>
 </template>
 
 <script lang="ts" setup>

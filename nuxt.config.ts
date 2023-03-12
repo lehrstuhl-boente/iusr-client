@@ -1,22 +1,27 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+  ],
   ssr: false,
   app: {
     head: {
       title: 'Nuxt Test',
-      meta: [
-        { name: 'descirption', content: 'This is the description.' }
-      ],
+      meta: [{ name: 'descirption', content: 'This is the description.' }],
       link: [
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined' }
-      ]
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined',
+        },
+      ],
     },
   },
   runtimeConfig: {
     public: {
-      baseURL: process.env.BASE_URL
-    }
+      baseURL: process.env.BASE_URL,
+    },
   },
   tailwindcss: {
     config: {
@@ -24,11 +29,11 @@ export default defineNuxtConfig({
       theme: {
         extend: {
           colors: {
-            'primary': '#4338CA',
+            primary: '#4338CA',
             'primary-hover': '#3730A3',
             'primary-active': '#312E81',
-            'alert': '#991B1B'
-          }
+            alert: '#991B1B',
+          },
         },
         container: {
           screens: {
@@ -36,12 +41,32 @@ export default defineNuxtConfig({
             md: '728px',
             lg: '984px',
             xl: '1240px',
-          }
-        }
+          },
+        },
       },
-      plugins: [
-        require('@tailwindcss/forms')
-      ]
-    }
-  }
-})
+      // safelist never excludes classes from the bundle because they may be programmatically created or changed at runtime
+      safelist: [
+        // modals
+        'max-w-none',
+        'max-w-xs',
+        'max-w-sm',
+        'max-w-md',
+        'max-w-lg',
+        'max-w-xl',
+        'max-w-2xl',
+        'max-w-3xl',
+        // notifications
+        'bg-emerald-100',
+        'border-emerald-300',
+        'text-emerald-800',
+        'bg-amber-100',
+        'border-amber-300',
+        'text-amber-800',
+        'bg-red-100',
+        'border-red-300',
+        'text-red-800',
+      ],
+      plugins: [require('@tailwindcss/forms')],
+    },
+  },
+});

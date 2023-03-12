@@ -16,8 +16,6 @@
             </div>
           </div>
         </div>
-        <!-- programmatically generated tailwind classes like above get filtered out -> apply on hidden element to keep them -->
-        <div class="hidden max-w-none max-w-xs max-w-sm max-w-md max-w-lg max-w-xl max-w-2xl max-w-3xl"></div>
       </div>
     </Transition>
   </Teleport>
