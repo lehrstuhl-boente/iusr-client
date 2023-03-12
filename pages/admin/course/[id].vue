@@ -20,7 +20,7 @@
           <textarea cols="30" rows="10" v-model="course.description"></textarea>
         </label>
         <div class="flex justify-between">
-          <input type="submit" value="Update" class="btn" @click.prevent="submit">
+          <input type="submit" value="Update" class="btn" @click.prevent="updateCourse">
           <a href="#" class="btn btn-alert" @click="deleteCourse">Delete Course</a>
         </div>
       </form>
@@ -29,7 +29,7 @@
       </div>
     </div>
   </div>
-  <ModalsAddChapter :show="showChapterModal" @close="showChapterModal = false" />
+  <ModalsAddChapter :show="showChapterModal" @close="showChapterModal = false" @submit="createChapter" />
 </template>
 
 <script lang="ts" setup>
@@ -52,13 +52,12 @@ try {
   console.error(e);
 }
 
-const submit = async () => {
+const updateCourse = async () => {
   try {
     await useApi().patch('/courses/' + route.params.id, {
       title: course.value?.title,
       description: course.value?.description
     });
-    navigateTo('/course/' + route.params.id);
     useNotification('success', 'Course Updated.');
   } catch (e: any) {
     errorMessages.value = e.response.data.message
@@ -78,4 +77,18 @@ const deleteCourse = async () => {
     }
   }
 }
+
+const createChapter = async (data: any) => {
+  if (!data.title) {
+    useNotification('notification', 'Title cannot be empty.');
+    return;
+  }
+  try {
+    await useApi().post('/chapters', {
+
+    });
+  } catch (error) {
+    useNotification('alert', 'Add Chapter Failed.')
+  }
+};
 </script>

@@ -5,7 +5,7 @@ interface NotificationStoreState {
 }
 
 interface Notification {
-  id: number,
+  id: number;
   type: string;
   content: string;
 }
@@ -13,7 +13,7 @@ interface Notification {
 export const useNotificationStore = defineStore('notification-store', {
   state: (): NotificationStoreState => {
     return {
-      notification: null
-    }
+      notification: null,
+    };
   },
 });

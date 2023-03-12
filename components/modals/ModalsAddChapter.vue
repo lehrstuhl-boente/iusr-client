@@ -16,7 +16,7 @@
 
 <script setup>
 const { show } = defineProps({ show: { required: true } });
-const emit = defineEmits(['close']);
+const emit = defineEmits(['close', 'submit']);
 
 const title = ref('');
 const description = ref('');
@@ -26,6 +26,6 @@ const closeModal = () => {
 };
 
 const submit = () => {
-  console.log('asdf');
+  emit('submit', { title: title.value, description: description.value });
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <Teleport to="body">
+  <Teleport to="#modals">
     <!-- moves this component at the end of the body tag but it can still be used inside other components or pages -->
     <Transition>
       <div class="fixed left-0 right-0  top-0 bottom-0 bg-black bg-opacity-40 overflow-auto" v-if="show"

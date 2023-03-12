@@ -22,28 +22,27 @@
 </template>
 
 <script lang="ts" setup>
-  definePageMeta({
-    middleware: 'admin'
-  });
+definePageMeta({
+  middleware: 'admin'
+});
 
-  const title = ref('');
-  const description = ref('');
-  const errorMessages = ref([]);
+const title = ref('');
+const description = ref('');
+const errorMessages = ref([]);
 
-  const submit = async () => {
-    try {
-      const response = await useApi().post('/courses', {
-        title: title.value,
-        description: description.value
-      });
-      navigateTo('/admin/course/' + response.data.id);
-    } catch(e: any) {
-      errorMessages.value = e.response.data.message
-      console.error(e);
-    }
+const submit = async () => {
+  try {
+    const response = await useApi().post('/courses', {
+      title: title.value,
+      description: description.value
+    });
+    useNotification('success', 'Course Created.')
+    navigateTo('/admin/course/' + response.data.id);
+  } catch (e: any) {
+    errorMessages.value = e.response.data.message
+    console.error(e);
   }
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
