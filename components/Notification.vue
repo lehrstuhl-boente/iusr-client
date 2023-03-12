@@ -1,11 +1,11 @@
 <template>
-  <Transition>
-    <div :key="notificationStore.notification?.id" :class="`bg-${color}-100 border-${color}-300 text-${color}-800`"
-      class="notification border border-solid fixed left-1/2 -translate-x-1/2 py-2 px-4 top-3 rounded shadow-lg pointer-events-none max-lg"
-      v-if="notificationStore.notification">
-      {{ notificationStore.notification?.content }}
-    </div>
-  </Transition>
+  <div :key="notificationStore.notification?.id"
+    :class="`bg-${color}-100 border-${color}-300 text-${color}-800 notification`"
+    class="notification border border-solid fixed left-1/2 -translate-x-1/2 py-2 px-4 top-3 rounded shadow-lg pointer-events-none max-lg"
+    v-if="notificationStore.notification">
+    {{ notificationStore.notification?.content }}
+  </div>
+
 
   <!-- Div with all , because tailwind only includes used -->
   <div class="opacity-0 bg-red-100 border-red-300 text-red-800"></div>
@@ -46,14 +46,24 @@ notificationStore.$subscribe((mutations, state) => {
 </script>
 
 <style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.3s ease;
+@keyframes fadeInOut {
+  0% {
+    margin-top: -10px;
+    opacity: 0;
+  }
+
+  10% {
+    margin-top: 0;
+    opacity: 1;
+  }
 }
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-  margin-top: -20px;
+.notification {
+  animation-name: fadeInOut;
+  animation-duration: 2.5s;
+  animation-direction: alternate;
+  animation-iteration-count: 2;
+  /* keep final state */
+  animation-fill-mode: forwards;
 }
 </style>
