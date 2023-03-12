@@ -5,9 +5,9 @@
       <div class="fixed left-0 right-0  top-0 bottom-0 bg-black bg-opacity-40 overflow-auto" v-if="show"
         @click.self="closeModal">
         <div class="container mx-auto px-4 py-10" @click.self="closeModal">
-          <div :class="`bg-white max-w-${size} mx-auto rounded-md p-5 shadow-xl`">
+          <div :class="`bg-white max-w-${size} mx-auto rounded-md px-6 pt-5 pb-6 shadow-xl`">
             <div class="flex justify-between items-center">
-              <h3 class="text-lg font-bold">Add Chapter</h3>
+              <h3 class="text-lg font-bold">{{ title }}</h3>
               <span class="material-icons-outlined hover:cursor-pointer hover:text-primary"
                 @click="closeModal">close</span>
             </div>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-const { show, size } = defineProps({ show: { required: true }, size: { default: '3xl' } });
+const { show, title, size } = defineProps({ show: { required: true }, title: { default: '' }, size: { default: '3xl' } });
 const emit = defineEmits(['close']);
 
 const closeModal = () => {

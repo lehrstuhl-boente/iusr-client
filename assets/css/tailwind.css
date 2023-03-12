@@ -30,16 +30,16 @@
   label {
     @apply block text-gray-700;
   }
-  input[type="text"], input[type="password"], textarea {
+  input[type='text'],
+  input[type='password'],
+  textarea {
     @apply block w-full p-2 mb-2 mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }
 }
 
 @layer utilities {
-  
 }
 
 .router-link-exact-active {
   @apply text-primary-active;
 }
-
