@@ -1,7 +1,7 @@
 <template>
-  <SubHeader>
-    <BackLink to="/dashboard">Back to Dashboard</BackLink>
-  </SubHeader>
+  <Teleport to="#backbutton">
+    <BackLink to="/dashboard" />
+  </Teleport>
   <h1>My Profile</h1>
   <div v-if="!user">
     {{ error }}
@@ -17,24 +17,22 @@
 </template>
 
 <script lang="ts" setup>
-  import { UserDto } from '~~/types';
+import { UserDto } from '~~/types';
 
-  definePageMeta({
-    middleware: 'authenticated'
-  });
+definePageMeta({
+  middleware: 'authenticated'
+});
 
-  const error = ref('');
-  const user = ref();
+const error = ref('');
+const user = ref();
 
-  try {
-    const response = await useApi().get<UserDto>('/users/me');
-    user.value = response.data;
-  } catch(e) {
-    console.error(e);
-    error.value = 'Could not fetch user.';
-  }
+try {
+  const response = await useApi().get<UserDto>('/users/me');
+  user.value = response.data;
+} catch (e) {
+  console.error(e);
+  error.value = 'Could not fetch user.';
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

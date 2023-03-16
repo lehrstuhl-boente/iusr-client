@@ -1,5 +1,5 @@
 <template>
-  <Modal :show="show" @close="closeModal" size="xl" title="Create Chapter">
+  <Modal :show="show" @close="$emit('close')" size="xl" title="Create Chapter">
     <form action="" class="flex flex-col">
       <label>
         <span>Title</span>
@@ -9,7 +9,7 @@
         <span>Description</span>
         <textarea cols="30" rows="10" v-model="description"></textarea>
       </label>
-      <input type="submit" value="Add" class="btn mt-2 md:self-end" @click.prevent="createChapter">
+      <input type="submit" value="Create" class="btn mt-2 md:self-end" @click.prevent="createChapter">
     </form>
   </Modal>
 </template>
@@ -21,12 +21,8 @@ const emit = defineEmits(['close', 'submit']);
 const title = ref('');
 const description = ref('');
 
-const closeModal = () => {
-  emit('close');
-};
-
 const createChapter = async () => {
-  if (!title) {
+  if (!title.value) {
     useNotification('warning', 'Title cannot be empty.');
     return;
   }

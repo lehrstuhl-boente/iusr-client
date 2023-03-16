@@ -1,22 +1,28 @@
 <template>
-  <div class="bg-white rounded-md mb-3 shadow">
-    <h3
-      class="flex justify-between items-center font-bold text-lg px-4 py-3 hover:text-primary-hover hover:cursor-pointer"
-      @click="toggle">
-      {{ chapter.title }}
-      <span class="material-icons-outlined arrow" :class="{ active: showDetails }">expand_more</span>
-    </h3>
-    <div v-show="showDetails" class="pt-0 pb-3 px-4">
-      <div class="muted">{{ chapter.description }}</div>
-      <div class="mt-3 flex justify-between" v-if="editable">
-        <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }" @click="editChapter">add</span>
-        <div>
-          <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }"
-            @click="showChapterModal = true">edit</span>
-          <span class="material-icons-outlined icon-btn ml-2" :class="{ active: showDetails }"
-            @click="deleteChapter">delete</span>
+  <div class="flex">
+    <div class="bg-white w-full rounded-md mb-3 shadow">
+      <h3
+        class="flex justify-between items-center font-bold text-lg px-4 py-3 hover:text-primary-hover hover:cursor-pointer"
+        @click="toggle">
+        {{ chapter.title }}
+        <span class="material-icons-outlined arrow" :class="{ active: showDetails }">expand_more</span>
+      </h3>
+      <div v-show="showDetails" class="pt-0 pb-3 px-4">
+        <div class="muted">{{ chapter.description }}</div>
+        <div class="mt-3 flex justify-between" v-if="editable">
+          <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }" @click="editChapter">add</span>
+          <div>
+            <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }"
+              @click="showChapterModal = true">edit</span>
+            <span class="material-icons-outlined icon-btn ml-2" :class="{ active: showDetails }"
+              @click="deleteChapter">delete</span>
+          </div>
         </div>
       </div>
+    </div>
+    <div v-if="editable" class="flex flex-col ml-3">
+      <span class="material-icons-outlined icon-btn">arrow_upward</span>
+      <span class="material-icons-outlined icon-btn">arrow_downward</span>
     </div>
   </div>
   <ModalsEditChapter :show="showChapterModal" :chapter="chapter" @close="showChapterModal = false"

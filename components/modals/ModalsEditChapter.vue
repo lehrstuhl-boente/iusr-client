@@ -1,5 +1,5 @@
 <template>
-  <Modal :show="show" @close="closeModal" size="xl" title="Edit Chapter">
+  <Modal :show="show" @close="$emit('close')" size="xl" title="Edit Chapter">
     <form action="" class="flex flex-col">
       <label>
         <span>Title</span>
@@ -23,10 +23,6 @@ const emit = defineEmits(['close', 'submit']);
 
 const title = ref(chapter.title);
 const description = ref(chapter.description);
-
-const closeModal = () => {
-  emit('close');
-};
 
 const editChapter = async () => {
   console.log(title.value, description.value);

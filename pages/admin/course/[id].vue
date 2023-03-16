@@ -1,7 +1,7 @@
 <template>
-  <SubHeader>
-    <BackLink :to="'/course/' + route.params.id">Back to Course</BackLink>
-  </SubHeader>
+  <Teleport to="#backbutton">
+    <BackLink :to="'/course/' + route.params.id" />
+  </Teleport>
   <div class="flex mt-5 mb-6">
     <h1>Edit Course</h1>
   </div>

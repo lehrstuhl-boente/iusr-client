@@ -1,13 +1,11 @@
 <template>
-  <SubHeader>
-    <BackLink to="/dashboard">Back to Dashboard</BackLink>
-  </SubHeader>
-
+  <Teleport to="#backbutton">
+    <BackLink to="/dashboard" />
+  </Teleport>
   <div class="flex items-center justify-between mt-5 mb-6">
     <h1>{{ course.title }}</h1>
     <NuxtLink :to="'/admin/course/' + route.params.id" v-if="authStore.isAdmin" class="btn">Edit Course</NuxtLink>
   </div>
-
   <div class="flex flex-row lg:flex-nowrap flex-wrap-reverse gap-10">
     <div class="lg:basis-8/12 w-full">
       <div v-if="course.chapters.length === 0">There are no chapters in this course.</div>

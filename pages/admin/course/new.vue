@@ -1,7 +1,7 @@
 <template>
-  <SubHeader>
-    <BackLink to="/dashboard">Back to Dashboard</BackLink>
-  </SubHeader>
+  <Teleport to="#backbutton">
+    <BackLink to="/dashboard" />
+  </Teleport>
   <div class="max-w-xl">
     <h1>New Course</h1>
     <form action="">
