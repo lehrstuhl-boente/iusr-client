@@ -11,7 +11,8 @@
         <span class="muted">{{ course.chapters.length }} Chapters</span>
         <a class="btn inline-block right" @click="showChapterModal = true">Add Chapter</a>
       </div>
-      <Chapter v-for="chapter in course.chapters" :chapter="chapter" :key="chapter.id" @delete="getCourse" />
+      <Chapter v-for="chapter in course.chapters" :chapter="chapter" :key="chapter.id" :editable="true"
+        @delete="getCourse" />
     </div>
     <div class="lg:basis-4/12 w-full">
       <form action="">

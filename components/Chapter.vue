@@ -8,7 +8,7 @@
     </h3>
     <div v-show="showDetails" class="pt-0 pb-3 px-4">
       <div class="muted">{{ chapter.description }}</div>
-      <div>
+      <div class="mt-3" v-if="editable">
         <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }"
           @click="deleteChapter">delete</span>
       </div>
@@ -17,7 +17,8 @@
 </template>
 
 <script setup>
-const { chapter } = defineProps(['chapter']);
+// ['chapter', 'editable']
+const { chapter, editable } = defineProps({ chapter: { required: true }, editable: { type: Boolean, default: false } });
 const emit = defineEmits(['delete']);
 
 const showDetails = ref(false);
