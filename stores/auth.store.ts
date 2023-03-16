@@ -5,25 +5,25 @@ interface AuthStoreState {
   user: User | null;
 }
 
-export interface User {
+interface User {
   email: string;
   isAdmin: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface Login {
+interface Login {
   email: string;
   password: string;
 }
 
-export interface Register {
+interface Register {
   email: string;
   password: string;
   passwordRepeat: string;
 }
 
-export interface LoginUserDto {
+interface LoginUserDto {
   email: string;
   isAdmin: boolean;
   createdAt: Date;
