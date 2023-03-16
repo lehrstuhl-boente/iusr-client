@@ -36,7 +36,7 @@ const submit = async () => {
       title: title.value,
       description: description.value
     });
-    useNotification('success', 'Course Created.')
+    useNotification('success', 'Course Created.');
     navigateTo('/admin/course/' + response.data.id);
   } catch (e: any) {
     errorMessages.value = e.response.data.message

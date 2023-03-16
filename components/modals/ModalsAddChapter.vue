@@ -9,13 +9,13 @@
         <span>Description</span>
         <textarea cols="30" rows="10" v-model="description"></textarea>
       </label>
-      <input type="submit" value="Add" class="btn mt-2 md:self-end" @click.prevent="submit">
+      <input type="submit" value="Add" class="btn mt-2 md:self-end" @click.prevent="createChapter">
     </form>
   </Modal>
 </template>
 
 <script setup>
-const { show } = defineProps({ show: { required: true } });
+const { show, courseId } = defineProps({ show: { required: true, type: Boolean }, courseId: { required: true, type: Number } });
 const emit = defineEmits(['close', 'submit']);
 
 const title = ref('');
@@ -25,7 +25,25 @@ const closeModal = () => {
   emit('close');
 };
 
-const submit = () => {
-  emit('submit', { title: title.value, description: description.value });
+const createChapter = async () => {
+  if (!title) {
+    useNotification('warning', 'Title cannot be empty.');
+    return;
+  }
+  try {
+    await useApi().post('/chapters', {
+      title: title.value,
+      description: description.value,
+      courseId
+    });
+    useNotification('success', 'Chapter Added.');
+    title.value = '';
+    description.value = '';
+    emit('submit');
+    emit('close');
+  } catch (error) {
+    useNotification('alert', 'Add Chapter Failed.');
+  }
+  //emit('submit', { title: title.value, description: description.value });
 };
 </script>

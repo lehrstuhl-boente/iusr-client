@@ -2,12 +2,12 @@
   <SubHeader>
     <BackLink :to="'/course/' + route.params.id">Back to Course</BackLink>
   </SubHeader>
-  <div class="flex">
+  <div class="flex mt-5 mb-6">
     <h1>Edit Course</h1>
   </div>
-  <div class="flex flex-row lg:flex-nowrap flex-wrap-reverse gap-5">
+  <div class="flex flex-row lg:flex-nowrap flex-wrap-reverse gap-10">
     <div class="lg:basis-8/12 w-full">
-      <a class="btn inline-block" @click="showChapterModal = true">Add Chapter</a>
+      <ChapterContainer :chapters="course.chapters" />
     </div>
     <div class="lg:basis-4/12 w-full">
       <form action="">
@@ -29,7 +29,8 @@
       </div>
     </div>
   </div>
-  <ModalsAddChapter :show="showChapterModal" @close="showChapterModal = false" @submit="createChapter" />
+  <ModalsAddChapter :show="showChapterModal" :courseId="course.id" @close="showChapterModal = false"
+    @submit="getCourse" />
 </template>
 
 <script lang="ts" setup>
@@ -45,12 +46,15 @@ const course = ref();
 const errorMessages = ref([]);
 const showChapterModal = ref(false);
 
-try {
-  const { data } = await useApi().get<CourseDto>('/courses/' + route.params.id);
-  course.value = data;
-} catch (e) {
-  console.error(e);
+const getCourse = async () => {
+  try {
+    const { data } = await useApi().get<CourseDto>('/courses/' + route.params.id);;
+    course.value = data;
+  } catch (e) {
+    console.error(e);
+  }
 }
+await getCourse();  // data fetching for initial page load
 
 const updateCourse = async () => {
   try {
@@ -77,18 +81,4 @@ const deleteCourse = async () => {
     }
   }
 }
-
-const createChapter = async (data: any) => {
-  if (!data.title) {
-    useNotification('notification', 'Title cannot be empty.');
-    return;
-  }
-  try {
-    await useApi().post('/chapters', {
-
-    });
-  } catch (error) {
-    useNotification('alert', 'Add Chapter Failed.')
-  }
-};
 </script>

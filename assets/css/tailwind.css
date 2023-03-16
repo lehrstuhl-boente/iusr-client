@@ -38,6 +38,9 @@
 }
 
 @layer utilities {
+  .muted {
+    @apply text-zinc-400;
+  }
 }
 
 .router-link-exact-active {
