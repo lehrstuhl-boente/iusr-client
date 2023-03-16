@@ -7,7 +7,11 @@
   </div>
   <div class="flex flex-row lg:flex-nowrap flex-wrap-reverse gap-10">
     <div class="lg:basis-8/12 w-full">
-      <ChapterContainer :chapters="course.chapters" />
+      <div class="flex justify-between items-center mb-5">
+        <span class="muted">{{ course.chapters.length }} Chapters</span>
+        <a class="btn inline-block right" @click="showChapterModal = true">Add Chapter</a>
+      </div>
+      <Chapter v-for="chapter in course.chapters" :chapter="chapter" :key="chapter.id" @delete="getCourse" />
     </div>
     <div class="lg:basis-4/12 w-full">
       <form action="">
@@ -62,11 +66,11 @@ const updateCourse = async () => {
       title: course.value?.title,
       description: course.value?.description
     });
-    useNotification('success', 'Course Updated.');
+    useNotification('success', 'Course updated.');
   } catch (e: any) {
     errorMessages.value = e.response.data.message
     console.error(e);
-    useNotification('alert', 'Course Update Failed.');
+    useNotification('alert', 'Course update failed.');
   }
 }
 

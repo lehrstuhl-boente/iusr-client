@@ -44,6 +44,5 @@ const createChapter = async () => {
   } catch (error) {
     useNotification('alert', 'Add Chapter Failed.');
   }
-  //emit('submit', { title: title.value, description: description.value });
 };
 </script>

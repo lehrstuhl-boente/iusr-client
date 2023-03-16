@@ -24,6 +24,9 @@
   .btn-alert {
     @apply bg-transparent hover:bg-alert border border-alert text-alert;
   }
+  .icon-btn {
+    @apply hover:text-primary-hover hover:cursor-pointer;
+  }
   .card {
     @apply p-3 rounded-md bg-white shadow-md h-full;
   }
