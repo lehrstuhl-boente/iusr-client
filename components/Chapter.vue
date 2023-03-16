@@ -8,20 +8,27 @@
     </h3>
     <div v-show="showDetails" class="pt-0 pb-3 px-4">
       <div class="muted">{{ chapter.description }}</div>
-      <div class="mt-3" v-if="editable">
-        <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }"
-          @click="deleteChapter">delete</span>
+      <div class="mt-3 flex justify-between" v-if="editable">
+        <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }" @click="editChapter">add</span>
+        <div>
+          <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }"
+            @click="showChapterModal = true">edit</span>
+          <span class="material-icons-outlined icon-btn ml-2" :class="{ active: showDetails }"
+            @click="deleteChapter">delete</span>
+        </div>
       </div>
     </div>
   </div>
+  <ModalsEditChapter :show="showChapterModal" :chapter="chapter" @close="showChapterModal = false"
+    @submit="$emit('update')" />
 </template>
 
 <script setup>
-// ['chapter', 'editable']
 const { chapter, editable } = defineProps({ chapter: { required: true }, editable: { type: Boolean, default: false } });
-const emit = defineEmits(['delete']);
+const emit = defineEmits(['update']);
 
 const showDetails = ref(false);
+const showChapterModal = ref(false);
 
 const toggle = () => {
   showDetails.value = !showDetails.value;

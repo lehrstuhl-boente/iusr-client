@@ -1,5 +1,5 @@
 <template>
-  <Modal :show="show" @close="closeModal" size="xl" title="Add Chapter">
+  <Modal :show="show" @close="closeModal" size="xl" title="Create Chapter">
     <form action="" class="flex flex-col">
       <label>
         <span>Title</span>
@@ -36,13 +36,13 @@ const createChapter = async () => {
       description: description.value,
       courseId
     });
-    useNotification('success', 'Chapter Added.');
+    useNotification('success', 'Chapter created.');
     title.value = '';
     description.value = '';
     emit('submit');
     emit('close');
   } catch (error) {
-    useNotification('alert', 'Add Chapter Failed.');
+    useNotification('alert', 'Could not create chapter.');
   }
 };
 </script>

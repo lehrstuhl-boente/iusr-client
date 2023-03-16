@@ -9,10 +9,10 @@
     <div class="lg:basis-8/12 w-full">
       <div class="flex justify-between items-center mb-5">
         <span class="muted">{{ course.chapters.length }} Chapters</span>
-        <a class="btn inline-block right" @click="showChapterModal = true">Add Chapter</a>
+        <a class="btn inline-block right" @click="showChapterModal = true">Create Chapter</a>
       </div>
       <Chapter v-for="chapter in course.chapters" :chapter="chapter" :key="chapter.id" :editable="true"
-        @delete="getCourse" />
+        @update="getCourse" />
     </div>
     <div class="lg:basis-4/12 w-full">
       <form action="">
@@ -34,7 +34,7 @@
       </div>
     </div>
   </div>
-  <ModalsAddChapter :show="showChapterModal" :courseId="course.id" @close="showChapterModal = false"
+  <ModalsCreateChapter :show="showChapterModal" :courseId="course.id" @close="showChapterModal = false"
     @submit="getCourse" />
 </template>
 
