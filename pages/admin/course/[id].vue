@@ -24,12 +24,12 @@
           <span>Description</span>
           <textarea cols="30" rows="10" v-model="course.description"></textarea>
         </label>
-        <div class="flex justify-between">
+        <div class="flex justify-between items-center">
+          <a href="#" class="text-danger hover:text-danger" @click="deleteCourse">Delete Course</a>
           <input type="submit" value="Update" class="btn" @click.prevent="updateCourse">
-          <a href="#" class="btn btn-alert" @click="deleteCourse">Delete Course</a>
         </div>
       </form>
-      <div class="text-alert mt-3">
+      <div class="text-danger mt-3">
         <div v-for="msg in errorMessages">{{ msg }}</div>
       </div>
     </div>
@@ -71,7 +71,7 @@ const updateCourse = async () => {
   } catch (e: any) {
     errorMessages.value = e.response.data.message
     console.error(e);
-    useNotification('alert', 'Course update failed.');
+    useNotification('danger', 'Course update failed.');
   }
 }
 
@@ -82,7 +82,7 @@ const deleteCourse = async () => {
       navigateTo('/dashboard');
       useNotification('warning', 'Course Deleted.');
     } catch (e: any) {
-      useNotification('alert', 'Deletion Failed.');
+      useNotification('danger', 'Deletion Failed.');
     }
   }
 }

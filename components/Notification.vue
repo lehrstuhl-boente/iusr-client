@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-// Possible Types: alert, warning, success; if another string is set, it defaults to success
+// Possible Types: danger, warning, success; if another string is set, it defaults to success
 
 import { useNotificationStore } from '~~/stores/notification.store';
 
@@ -18,15 +18,15 @@ const color = ref('');
 
 const updateNotificationColor = (state: any) => {
   switch (state.notification?.type) {
-    case 'alert':
+    case 'danger':
       color.value = 'red';
       break;
     case 'warning':
-      color.value = 'amber';
+      color.value = 'amber';  // yellow
       break;
     default:
     case 'success':
-      color.value = 'emerald';
+      color.value = 'emerald';  // green
       break;
   }
 }
@@ -46,7 +46,7 @@ notificationStore.$subscribe((mutations, state) => {
     opacity: 0;
   }
 
-  10% {
+  7% {
     margin-top: 0;
     opacity: 1;
   }
@@ -54,7 +54,7 @@ notificationStore.$subscribe((mutations, state) => {
 
 .notification {
   animation-name: fadeInOut;
-  animation-duration: 2.5s;
+  animation-duration: 2s;
   animation-direction: alternate;
   animation-iteration-count: 2;
   /* keep final state */

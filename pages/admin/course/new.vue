@@ -15,7 +15,7 @@
       </label>
       <input type="submit" value="Create" class="btn" @click.prevent="submit">
     </form>
-    <div class="text-alert">
+    <div class="text-danger">
       <div v-for="msg in errorMessages">{{ msg }}</div>
     </div>
   </div>

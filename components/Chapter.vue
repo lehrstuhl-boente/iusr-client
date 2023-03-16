@@ -9,14 +9,16 @@
       </h3>
       <div v-show="showDetails" class="pt-0 pb-3 px-4">
         <div class="muted">{{ chapter.description }}</div>
-        <div class="mt-3 flex justify-between" v-if="editable">
-          <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }" @click="editChapter">add</span>
-          <div>
-            <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }"
-              @click="showChapterModal = true">edit</span>
-            <span class="material-icons-outlined icon-btn ml-2" :class="{ active: showDetails }"
-              @click="deleteChapter">delete</span>
-          </div>
+        <div class="mt-3" v-if="editable">
+          <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }"
+            @click="deleteChapter">delete</span>
+          <span class="material-icons-outlined icon-btn ml-2" :class="{ active: showDetails }"
+            @click="showChapterModal = true">edit</span>
+          <span class="material-icons-outlined icon-btn ml-2" :class="{ active: showDetails }"
+            @click="showLessonModal = true">add</span>
+        </div>
+        <div class="flex flex-col" v-if="chapter.lessons.length != 0">
+          <LessonItem v-for="lesson in chapter.lessons" :lesson="lesson" :key="lesson.id" :editable="editable" />
         </div>
       </div>
     </div>
@@ -27,6 +29,7 @@
   </div>
   <ModalsEditChapter :show="showChapterModal" :chapter="chapter" @close="showChapterModal = false"
     @submit="$emit('update')" />
+  <ModalsCreateLesson :show="showLessonModal" :chapter="chapter" @close="showLessonModal = false" />
 </template>
 
 <script setup>
@@ -35,6 +38,11 @@ const emit = defineEmits(['update']);
 
 const showDetails = ref(false);
 const showChapterModal = ref(false);
+const showLessonModal = ref(false);
+
+if (editable) {
+  showDetails.value = true;
+}
 
 const toggle = () => {
   showDetails.value = !showDetails.value;
@@ -48,7 +56,7 @@ const deleteChapter = async () => {
       useNotification('warning', 'Chapter deleted.');
     } catch (e) {
       console.error(e);
-      useNotification('alert', 'Could not delete chapter.');
+      useNotification('danger', 'Could not delete chapter.');
     }
   }
 };

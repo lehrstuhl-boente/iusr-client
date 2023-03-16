@@ -38,7 +38,7 @@ const createChapter = async () => {
     emit('submit');
     emit('close');
   } catch (error) {
-    useNotification('alert', 'Could not create chapter.');
+    useNotification('danger', 'Could not create chapter.');
   }
 };
 </script>

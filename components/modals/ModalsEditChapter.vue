@@ -39,7 +39,7 @@ const editChapter = async () => {
     emit('submit');
     emit('close');
   } catch (error) {
-    useNotification('alert', 'Could not edit chapter.');
+    useNotification('danger', 'Could not edit chapter.');
   }
 };
 

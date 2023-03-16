@@ -32,7 +32,7 @@ export default defineNuxtConfig({
             primary: '#4338CA',
             'primary-hover': '#3730A3',
             'primary-active': '#312E81',
-            alert: '#991B1B',
+            danger: '#991B1B',
           },
         },
         container: {

@@ -12,35 +12,33 @@
       </label>
       <input type="submit" class="btn" @click.prevent="login" value="Login">
     </form>
-    <div class="text-alert">
+    <div class="text-danger">
       <div v-for="msg in errorMessages">{{ msg }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { useAuthStore } from '../stores/auth.store';
+import { useAuthStore } from '../stores/auth.store';
 
-  definePageMeta({
-    middleware: 'unauthenticated',
-    layout: 'unauthenticated'
-  });
+definePageMeta({
+  middleware: 'unauthenticated',
+  layout: 'unauthenticated'
+});
 
-  const authStore = useAuthStore();
+const authStore = useAuthStore();
 
-  const email = ref('');
-  const password = ref('');
-  const errorMessages = ref([]);
+const email = ref('');
+const password = ref('');
+const errorMessages = ref([]);
 
-  const login = async () => {
-    try {
-      await authStore.login({ email: email.value, password: password.value });
-    } catch(e: any) {
-      errorMessages.value = e.response.data.message;
-    }
-  };
+const login = async () => {
+  try {
+    await authStore.login({ email: email.value, password: password.value });
+  } catch (e: any) {
+    errorMessages.value = e.response.data.message;
+  }
+};
 </script>
 
-<style lang="postcss" scoped>
-
-</style>
+<style lang="postcss" scoped></style>

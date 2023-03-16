@@ -1,0 +1,3 @@
+<template>
+  EDIT LESSON
+</template>

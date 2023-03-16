@@ -21,8 +21,8 @@
   .btn {
     @apply bg-primary hover:bg-primary-hover active:bg-primary-active px-3 py-2 rounded-md text-sm text-white hover:text-white cursor-pointer;
   }
-  .btn-alert {
-    @apply bg-transparent hover:bg-alert border border-alert text-alert;
+  .btn-danger {
+    @apply bg-transparent hover:bg-danger border border-danger text-danger;
   }
   .icon-btn {
     @apply hover:text-primary-hover hover:cursor-pointer;
@@ -35,6 +35,7 @@
   }
   input[type='text'],
   input[type='password'],
+  select,
   textarea {
     @apply block w-full p-2 mb-2 mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
   }
@@ -43,6 +44,9 @@
 @layer utilities {
   .muted {
     @apply text-zinc-400;
+  }
+  :disabled {
+    @apply opacity-50;
   }
 }
 
