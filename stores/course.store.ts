@@ -26,14 +26,25 @@ export const useCourseStore = defineStore('course-store', {
     };
   },
   actions: {
-    async getCourse(id: string) {
+    // this method is used at the top level to populate the store for the first time
+    async getCourse(id: number) {
       try {
         const { data } = await useApi().get<Course>('/courses/' + id);
         this.course = data;
       } catch (e) {
         useNotification('danger', 'Could not fetch course.');
-        console.error(e);
       }
+    },
+    // this method is used when the store is already populated but the same course data should be updated
+    async update() {
+      if (!this.course) {
+        useNotification(
+          'danger',
+          'Cannot update course when no course is loaded.'
+        );
+        return;
+      }
+      await this.getCourse(this.course.id);
     },
   },
 });

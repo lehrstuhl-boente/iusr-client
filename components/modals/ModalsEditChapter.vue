@@ -18,17 +18,20 @@
 </template>
 
 <script lang="ts" setup>
+import { useCourseStore } from '~~/stores/course.store';
+
 const { show, chapter } = defineProps({
   show: { required: true, type: Boolean },
   chapter: { required: true, type: Object }
 });
-const emit = defineEmits(['close', 'submit']);
+const emit = defineEmits(['close']);
+
+const courseStore = useCourseStore();
 
 const title = ref(chapter.title);
 const description = ref(chapter.description);
 
 const editChapter = async () => {
-  console.log(title.value, description.value);
   if (!title) {
     useNotification('warning', 'Title cannot be empty.');
     return;
@@ -38,8 +41,8 @@ const editChapter = async () => {
       title: title.value,
       description: description.value
     });
+    await courseStore.update();
     useNotification('success', 'Chapter updated.');
-    emit('submit');
     emit('close');
   } catch (error) {
     useNotification('danger', 'Could not edit chapter.');

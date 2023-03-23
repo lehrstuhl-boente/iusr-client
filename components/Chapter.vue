@@ -18,8 +18,7 @@
             @click="showLessonModal = true">add</span>
         </div>
         <div class="flex flex-col" v-if="chapter.lessons.length != 0">
-          <LessonItem v-for="lesson in chapter.lessons" :lesson="lesson" :key="lesson.id" :editable="editable"
-            @update="$emit('update')" />
+          <LessonItem v-for="lesson in chapter.lessons" :lesson="lesson" :key="lesson.id" :editable="editable" />
         </div>
       </div>
     </div>
@@ -28,14 +27,16 @@
       <span class="material-icons-outlined icon-btn">arrow_downward</span>
     </div>
   </div>
-  <ModalsEditChapter :show="showChapterModal" :chapter="chapter" @close="showChapterModal = false"
-    @submit="$emit('update')" />
+  <ModalsEditChapter :show="showChapterModal" :chapter="chapter" @close="showChapterModal = false" />
   <ModalsCreateLesson :show="showLessonModal" :chapter="chapter" @close="showLessonModal = false" />
 </template>
 
-<script setup>
-const { chapter, editable } = defineProps({ chapter: { required: true }, editable: { type: Boolean, default: false } });
-const emit = defineEmits(['update']);
+<script lang="ts" setup>
+import { useCourseStore } from '~~/stores/course.store';
+
+const { chapter, editable } = defineProps({ chapter: { required: true, type: Object }, editable: { type: Boolean, default: false } });
+
+const courseStore = useCourseStore();
 
 const showDetails = ref(false);
 const showChapterModal = ref(false);
@@ -53,7 +54,7 @@ const deleteChapter = async () => {
   if (confirm('Do you want to delete this chapter? This action cannot be undone.')) {
     try {
       await useApi().delete('/chapters/' + chapter.id);
-      emit('update');
+      await courseStore.update();   // re-fetch the course from the api to show the changes
       useNotification('success', 'Chapter deleted.');
     } catch (e) {
       console.error(e);

@@ -15,9 +15,15 @@
 </template>
 
 <script lang="ts" setup>
-const { show, courseId } = defineProps({ show: { required: true, type: Boolean }, courseId: { required: true, type: Number } });
-const emit = defineEmits(['close', 'submit']);
+import { useCourseStore } from '~~/stores/course.store';
+import { storeToRefs } from 'pinia';
 
+const { show } = defineProps({ show: { required: true, type: Boolean } });
+const emit = defineEmits(['close']);
+
+const courseStore = useCourseStore();
+
+const { course } = storeToRefs(courseStore);
 const title = ref('');
 const description = ref('');
 
@@ -30,14 +36,15 @@ const createChapter = async () => {
     await useApi().post('/chapters', {
       title: title.value,
       description: description.value,
-      courseId
+      courseId: course.value?.id
     });
+    await courseStore.update();
     useNotification('success', 'Chapter created.');
     title.value = '';
     description.value = '';
-    emit('submit');
     emit('close');
   } catch (error: any) {
+    console.error(error);
     useNotification('danger', 'Could not create chapter.');
   }
 };
