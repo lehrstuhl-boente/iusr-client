@@ -40,12 +40,16 @@
 
 <script lang="ts" setup>
 import { CourseDto } from '~~/types';
+import { useCourseStore } from '~~/stores/course.store';
 
 definePageMeta({
   middleware: 'admin'
 });
 
 const route = useRoute();
+const courseStore = useCourseStore();
+
+courseStore.getCourse(route.params.id as string);
 
 const course = ref();
 const errorMessages = ref([]);
