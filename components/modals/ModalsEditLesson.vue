@@ -3,8 +3,10 @@
     <form action="" class="flex flex-col">
       <label>
         <span>Chapter</span>
-        <select disabled>
-          <option>{{ lesson.title }}</option>
+        <select v-model="chapterId">
+          <option v-if="course" v-for="chapter in course.chapters" :value="chapter.id">
+            {{ chapter.title }}
+          </option>
         </select>
       </label>
       <label>
@@ -23,17 +25,38 @@
 </template>
 
 <script lang="ts" setup>
+import { useCourseStore } from '~~/stores/course.store';
+import { storeToRefs } from 'pinia';
+
 const { show, lesson } = defineProps({
   show: { required: true, type: Boolean },
   lesson: { required: true, type: Object }
 });
-const emit = defineEmits(['close', 'submit']);
+const emit = defineEmits(['close']);
 
+const courseStore = useCourseStore();
+
+const { course } = storeToRefs(courseStore);
 const title = ref(lesson.title);
+const chapterId = ref(lesson.chapterId);
 
-//const chapters = await useApi().get('/courses/' +  + '/chapters')
-
-const editLesson = () => {
-  console.log('asdf');
+const editLesson = async () => {
+  console.log(title);
+  if (!title.value) {
+    useNotification('warning', 'Title cannot be empty.');
+    return;
+  }
+  try {
+    await useApi().patch('/lessons/' + lesson.id, {
+      title: title.value,
+      chapterId: chapterId.value
+    });
+    await courseStore.update();
+    useNotification('success', 'Course updated.');
+    emit('close');
+  } catch (error: any) {
+    useNotification('danger', 'Could not update lesson.')
+    console.error(error);
+  }
 }
 </script>

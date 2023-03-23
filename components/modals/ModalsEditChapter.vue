@@ -32,7 +32,7 @@ const title = ref(chapter.title);
 const description = ref(chapter.description);
 
 const editChapter = async () => {
-  if (!title) {
+  if (!title.value) {
     useNotification('warning', 'Title cannot be empty.');
     return;
   }
