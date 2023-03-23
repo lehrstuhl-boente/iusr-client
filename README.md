@@ -1,42 +1,19 @@
-# Nuxt 3 Minimal Starter
+# IusR Client
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Frontend for an open source code learning platform.
 
-## Setup
+## Project Setup
 
-Make sure to install the dependencies:
+### Development Environment
 
-```bash
-# yarn
-yarn install
+1. run `npm install` from root directory
+2. copy .env.example, save it as .env and change the values if needed
+3. run `npm run dev` to run development server
 
-# npm
-npm install
+### Production Environment
 
-# pnpm
-pnpm install
-```
+TODO
 
-## Development Server
+## Techstack
 
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+**Framework:** Nuxt.js 3, https://nuxt.com/
