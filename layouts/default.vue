@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { useAuthStore } from '../stores/auth.store';
 
 const authStore = useAuthStore();
@@ -34,7 +34,3 @@ const logout = () => {
   authStore.logout();
 };
 </script>
-
-<style>
-/**/
-</style>

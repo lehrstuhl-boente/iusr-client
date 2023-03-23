@@ -17,7 +17,10 @@
 </template>
 
 <script setup>
-const { show, chapter } = defineProps({ show: { required: true, type: Boolean }, chapter: { required: false } });
+const { show, chapter } = defineProps({
+  show: { required: true, type: Boolean },
+  chapter: { required: false }
+});
 const emit = defineEmits(['close']);
 
 const title = ref('');

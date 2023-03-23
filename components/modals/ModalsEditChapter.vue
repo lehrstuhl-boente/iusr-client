@@ -17,8 +17,11 @@
   </Modal>
 </template>
 
-<script setup>
-const { show, chapter } = defineProps({ show: { required: true, type: Boolean }, chapter: { required: true } });
+<script lang="ts" setup>
+const { show, chapter } = defineProps({
+  show: { required: true, type: Boolean },
+  chapter: { required: true, type: Object }
+});
 const emit = defineEmits(['close', 'submit']);
 
 const title = ref(chapter.title);

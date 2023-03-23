@@ -9,9 +9,7 @@
     <div class="p-2"><strong>{{ lesson.title }}</strong></div>
     <div v-if="editable" class="ml-auto">
       <span class="material-icons-outlined icon-btn" @click="deleteLesson">delete</span>
-      <NuxtLink :to="'/admin/lesson/' + lesson.id">
-        <span class="material-icons-outlined ml-1">edit</span>
-      </NuxtLink>
+      <span class="material-icons-outlined icon-btn ml-1" @click="showLessonModal = true">edit</span>
       <span class="material-icons-outlined icon-btn ml-1">arrow_upward</span>
       <span class="material-icons-outlined icon-btn">arrow_downward</span>
     </div>
@@ -21,12 +19,17 @@
       </NuxtLink>
     </div>
   </div>
+  <ModalsEditLesson :lesson="lesson" :show="showLessonModal" @close="showLessonModal = false">
+    asdfasdf
+  </ModalsEditLesson>
 </template>
 
 <script setup>
 const { lesson, editable } = defineProps({ lesson: { required: true }, editable: { type: Boolean } });
 
 const emit = defineEmits(['update']);
+
+const showLessonModal = ref(false);
 
 const deleteLesson = async () => {
   if (confirm('Do you want to delete this lesson? This action cannot be undone.')) {

@@ -18,7 +18,8 @@
 }
 
 @layer components {
-  .btn {
+  .btn,
+  input[type='submit'] {
     @apply bg-primary hover:bg-primary-hover active:bg-primary-active px-3 py-2 rounded-md text-sm text-white hover:text-white cursor-pointer;
   }
   .btn-danger {
