@@ -18,7 +18,7 @@
             @click="showLessonModal = true">add</span>
         </div>
         <div class="flex flex-col" v-if="chapter.lessons.length != 0">
-          <LessonItem v-for="lesson in chapter.lessons" :lesson="lesson" :key="lesson.id" :editable="editable" />
+          <LessonItem v-for="lesson in chapter.lessons" :lesson="lesson" :key="lesson.id" :editable="editable" @update="$emit('update')" />
         </div>
       </div>
     </div>
@@ -53,7 +53,7 @@ const deleteChapter = async () => {
     try {
       await useApi().delete('/chapters/' + chapter.id);
       emit('update');
-      useNotification('warning', 'Chapter deleted.');
+      useNotification('success', 'Chapter deleted.');
     } catch (e) {
       console.error(e);
       useNotification('danger', 'Could not delete chapter.');

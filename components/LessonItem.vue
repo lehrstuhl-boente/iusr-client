@@ -26,7 +26,18 @@
 <script setup>
 const { lesson, editable } = defineProps({ lesson: { required: true }, editable: { type: Boolean } });
 
-const deleteLesson = () => {
-  return;
+const emit = defineEmits(['update']);
+
+const deleteLesson = async () => {
+  if (confirm('Do you want to delete this lesson? This action cannot be undone.')) {
+    try {
+      await useApi().delete('/lessons/' + lesson.id);
+      emit('update');
+      useNotification('success', 'Lesson deleted.');
+    } catch (e) {
+      console.error(e);
+      useNotification('danger', 'Could not delete chapter.');
+    }
+  }
 };
 </script>

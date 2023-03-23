@@ -80,7 +80,7 @@ const deleteCourse = async () => {
     try {
       const response = await useApi().delete('/courses/' + route.params.id);
       navigateTo('/dashboard');
-      useNotification('warning', 'Course Deleted.');
+      useNotification('success', 'Course Deleted.');
     } catch (e: any) {
       useNotification('danger', 'Deletion Failed.');
     }
