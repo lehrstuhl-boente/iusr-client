@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-between mt-5 mb-6">
     <h1>My Courses</h1>
-    <NuxtLink to="/admin/course/new" class="btn" v-if="authStore.isAdmin">New Course</NuxtLink>
+    <a class="btn inline-block right" @click="showCourseModal = true">Create Course</a>
   </div>
   <div v-if="!courses">
     There are no courses.
@@ -9,6 +9,7 @@
   <div v-else class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
     <CourseCard v-for="course in courses" :course="course"></CourseCard>
   </div>
+  <ModalsCreateCourse :show="showCourseModal" @close="showCourseModal = false" />
 </template>
 
 <script lang="ts" setup>
@@ -21,6 +22,7 @@
   const authStore = useAuthStore();
 
   const courses = ref();
+  const showCourseModal = ref(false);
 
   try {
     const response = await useApi().get('/courses');

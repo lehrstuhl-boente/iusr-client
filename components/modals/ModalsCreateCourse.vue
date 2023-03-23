@@ -1,5 +1,5 @@
 <template>
-  <Modal :show="show" @close="$emit('close')" size="xl" title="Create Chapter">
+  <Modal :show="show" @close="$emit('close')" size="xl" title="Create Course">
     <form action="" class="flex flex-col">
       <label>
         <span>Title</span>
@@ -9,36 +9,32 @@
         <span>Description</span>
         <textarea cols="30" rows="10" v-model="description"></textarea>
       </label>
-      <input type="submit" value="Create" class="btn mt-2 md:self-end" @click.prevent="createChapter">
+      <input type="submit" value="Create" class="btn mt-2 md:self-end" @click.prevent="createCourse">
     </form>
   </Modal>
 </template>
 
 <script lang="ts" setup>
-const { show, courseId } = defineProps({ show: { required: true, type: Boolean }, courseId: { required: true, type: Number } });
+const { show } = defineProps({ show: { required: true, type: Boolean } });
 const emit = defineEmits(['close', 'submit']);
 
 const title = ref('');
 const description = ref('');
 
-const createChapter = async () => {
+const createCourse = async () => {
   if (!title.value) {
     useNotification('warning', 'Title cannot be empty.');
     return;
   }
   try {
-    await useApi().post('/chapters', {
+    const response = await useApi().post('/courses', {
       title: title.value,
-      description: description.value,
-      courseId
+      description: description.value
     });
-    useNotification('success', 'Chapter created.');
-    title.value = '';
-    description.value = '';
-    emit('submit');
-    emit('close');
+    useNotification('success', 'Course Created.');
+    navigateTo('/admin/course/' + response.data.id);
   } catch (error: any) {
-    useNotification('danger', 'Could not create chapter.');
+    useNotification('danger', 'Could not create course.');
   }
-};
+}
 </script>

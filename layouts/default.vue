@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="flex items-center shadow-lg bg-white sticky top-0">
+    <header class="flex items-center shadow-lg bg-white sticky top-0 z-10">
       <div id="backbutton" class="absolute ml-4"></div>
       <nav class="container mx-auto p-4 flex justify-between items-center">
         <NuxtLink to="/dashboard">Dashboard</NuxtLink>

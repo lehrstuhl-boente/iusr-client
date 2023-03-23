@@ -5,7 +5,7 @@
         class="flex justify-between items-center font-bold text-lg px-4 py-3 hover:text-primary-hover hover:cursor-pointer"
         @click="toggle">
         {{ chapter.title }}
-        <span class="material-icons-outlined arrow" :class="{ active: showDetails }">expand_more</span>
+        <span class="material-icons-outlined arrow relative z-0" :class="{ active: showDetails }">expand_more</span>
       </h3>
       <div v-show="showDetails" class="pt-0 pb-3 px-4">
         <div class="muted">{{ chapter.description }}</div>
@@ -52,7 +52,7 @@ const deleteChapter = async () => {
   if (confirm('Do you want to delete this chapter? This action cannot be undone.')) {
     try {
       await useApi().delete('/chapters/' + chapter.id);
-      emit('delete');
+      emit('update');
       useNotification('warning', 'Chapter deleted.');
     } catch (e) {
       console.error(e);

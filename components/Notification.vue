@@ -1,7 +1,7 @@
 <template>
   <div :key="notificationStore.notification?.id"
     :class="`bg-${color}-100 border-${color}-300 text-${color}-800 notification`"
-    class="notification border border-solid fixed left-1/2 -translate-x-1/2 py-2 px-4 top-3 rounded shadow-lg pointer-events-none max-lg"
+    class="notification border border-solid fixed left-1/2 -translate-x-1/2 py-2 px-4 top-3 rounded shadow-lg pointer-events-none max-lg z-30"
     v-if="notificationStore.notification">
     {{ notificationStore.notification?.content }}
   </div>

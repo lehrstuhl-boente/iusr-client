@@ -2,7 +2,7 @@
   <Teleport to="#modals">
     <!-- moves this component at the end of the body tag but it can still be used inside other components or pages -->
     <Transition>
-      <div class="fixed left-0 right-0  top-0 bottom-0 bg-black bg-opacity-40 overflow-auto" v-if="show"
+      <div class="fixed left-0 right-0 top-0 bottom-0 bg-black bg-opacity-40 overflow-auto z-10" v-if="show"
         @click.self="closeModal">
         <div class="container mx-auto px-4 py-10" @click.self="closeModal">
           <div :class="`bg-white max-w-${size} mx-auto rounded-md px-6 pt-5 pb-6 shadow-xl`">

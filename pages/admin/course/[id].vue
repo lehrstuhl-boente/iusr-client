@@ -53,7 +53,7 @@ const showChapterModal = ref(false);
 
 const getCourse = async () => {
   try {
-    const { data } = await useApi().get<CourseDto>('/courses/' + route.params.id);;
+    const { data } = await useApi().get<CourseDto>('/courses/' + route.params.id);
     course.value = data;
   } catch (e) {
     console.error(e);

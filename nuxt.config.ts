@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     head: {
-      title: 'Nuxt Test',
+      title: 'IusR – Code Learning Platform',
       meta: [{ name: 'descirption', content: 'This is the description.' }],
       link: [
         {
@@ -44,7 +44,7 @@ export default defineNuxtConfig({
           },
         },
       },
-      // safelist never excludes classes from the bundle because they may be programmatically created or changed at runtime
+      // safelisted classes are never excluded from the bundle because they may be programmatically created or changed at runtime
       safelist: [
         // modals
         'max-w-none',
