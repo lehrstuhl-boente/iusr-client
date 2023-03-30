@@ -11,7 +11,7 @@
     </header>
     <div class="flex h-full">
       <div class="w-1/3 h-full">
-        <EditorLarge v-model="editorContent" />
+        Quill Editor
       </div>
       <div class="w-1/3 p-2 bg-gray-800 h-full">Monaco Editor</div>
       <div class="w-1/3 p-2 bg-black h-full text-white">Output</div>
@@ -30,8 +30,6 @@ definePageMeta({
 
 const route = useRoute();
 const courseStore = useCourseStore();
-
-const editorContent = ref('');
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 </script>
