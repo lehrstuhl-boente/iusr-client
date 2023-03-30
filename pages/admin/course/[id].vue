@@ -1,6 +1,6 @@
 <template>
   <Teleport to="#backbutton">
-    <BackLink :to="'/course/' + route.params.id" />
+    <BackLink :to="'/course/' + route.params.courseId" />
   </Teleport>
   <template v-if="course">
     <div class="flex mt-5 mb-6">
@@ -77,9 +77,9 @@ const deleteCourse = async () => {
     try {
       const response = await useApi().delete('/courses/' + route.params.id);
       navigateTo('/dashboard');
-      useNotification('success', 'Course Deleted.');
+      useNotification('success', 'Course deleted.');
     } catch (e: any) {
-      useNotification('danger', 'Deletion Failed.');
+      useNotification('danger', 'Deletion failed.');
     }
   }
 }

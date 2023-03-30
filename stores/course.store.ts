@@ -23,6 +23,9 @@ export const useCourseStore = defineStore('course-store', {
       course: null,
     };
   },
+  getters: {
+    courseId: (state) => state.course?.id,
+  },
   actions: {
     // this method is used at the top level to populate the store for the first time
     async getCourse(id: number) {

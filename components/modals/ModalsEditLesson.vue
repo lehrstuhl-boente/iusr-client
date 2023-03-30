@@ -14,7 +14,8 @@
         <input type="text" placeholder="e.g. Introduction" v-model="title" v-focus>
       </label>
       <div class="flex items-center justify-between mt-2">
-        <NuxtLink :to="'/admin/lesson/' + lesson.id" class="btn flex h-full items-center relative">
+        <NuxtLink :to="`/admin/course/${$route.params.id}/lesson/${lesson.id}`"
+          class="btn flex h-full items-center relative">
           <span class="material-icons-outlined absolute">code</span>
           <span class="pl-7 pr-1">Lesson Builder</span>
         </NuxtLink>
