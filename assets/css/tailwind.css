@@ -26,7 +26,10 @@
     @apply bg-transparent hover:bg-danger border border-danger text-danger;
   }
   .icon-btn {
-    @apply hover:text-primary-hover hover:cursor-pointer;
+    @apply hover:text-primary hover:bg-indigo-50 active:bg-indigo-100 active:text-primary-active hover:cursor-pointer rounded-md p-1;
+  }
+  .icon-btn.danger {
+    @apply hover:text-red-700 hover:bg-red-50 active:bg-red-100 active:text-red-800;
   }
   .card {
     @apply p-3 rounded-md bg-white shadow-md h-full;
@@ -39,6 +42,9 @@
   select,
   textarea {
     @apply block w-full p-2 mb-2 mt-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+  }
+  input.error {
+    @apply border-danger;
   }
 }
 

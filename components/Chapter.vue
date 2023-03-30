@@ -1,8 +1,7 @@
 <template>
   <div class="flex">
     <div class="bg-white w-full rounded-md mb-3 shadow">
-      <h3
-        class="flex justify-between items-center font-bold text-lg px-4 py-3 hover:text-primary-hover hover:cursor-pointer"
+      <h3 class="flex justify-between items-center font-bold text-lg px-4 py-3 hover:text-primary hover:cursor-pointer"
         @click="toggle">
         {{ chapter.title }}
         <span class="material-icons-outlined arrow relative z-0" :class="{ active: showDetails }">expand_more</span>
@@ -10,7 +9,7 @@
       <div v-show="showDetails" class="pt-0 pb-3 px-4">
         <div class="muted">{{ chapter.description }}</div>
         <div class="mt-3" v-if="editable">
-          <span class="material-icons-outlined icon-btn" :class="{ active: showDetails }"
+          <span class="material-icons-outlined icon-btn danger" :class="{ active: showDetails }"
             @click="deleteChapter">delete</span>
           <span class="material-icons-outlined icon-btn ml-2" :class="{ active: showDetails }"
             @click="showChapterModal = true">edit</span>
@@ -18,13 +17,14 @@
             @click="showLessonModal = true">add</span>
         </div>
         <div class="flex flex-col" v-if="chapter.lessons.length != 0">
-          <LessonItem v-for="lesson in chapter.lessons" :lesson="lesson" :key="lesson.id" :editable="editable" />
+          <LessonItem v-for="(lesson, index) in chapter.lessons" :lesson="{ index, ...lesson }" :key="lesson.id"
+            :editable="editable" />
         </div>
       </div>
     </div>
     <div v-if="editable" class="flex flex-col ml-3">
-      <span class="material-icons-outlined icon-btn">arrow_upward</span>
-      <span class="material-icons-outlined icon-btn">arrow_downward</span>
+      <span class="material-icons-outlined icon-btn p-0 hover:bg-inherit">arrow_upward</span>
+      <span class="material-icons-outlined icon-btn p-0 hover:bg-inherit">arrow_downward</span>
     </div>
   </div>
   <ModalsEditChapter :show="showChapterModal" :chapter="chapter" @close="showChapterModal = false" />

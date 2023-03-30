@@ -5,12 +5,12 @@
       <span class="material-icons-outlined mr-1 text-primary">lock_open</span>
       <span class="material-icons-outlined mr-1 text-danger">lock</span>
     </template>
-    <div v-else class="mr-1 text-primary" style="min-width: 25px;">Lesson 1</div>
+    <div v-else class="mr-1 text-primary" style="min-width: 30px;">Lesson {{ lesson.index + 1 }}</div>
     <div class="p-2"><strong>{{ lesson.title }}</strong></div>
     <div v-if="editable" class="ml-auto">
-      <span class="material-icons-outlined icon-btn" @click="deleteLesson">delete</span>
+      <span class="material-icons-outlined icon-btn danger" @click="deleteLesson">delete</span>
       <span class="material-icons-outlined icon-btn ml-1" @click="showLessonModal = true">edit</span>
-      <span class="material-icons-outlined icon-btn ml-1">arrow_upward</span>
+      <span class="material-icons-outlined icon-btn">arrow_upward</span>
       <span class="material-icons-outlined icon-btn">arrow_downward</span>
     </div>
     <div v-else class="ml-auto">

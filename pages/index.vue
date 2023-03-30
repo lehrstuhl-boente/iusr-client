@@ -1,14 +1,12 @@
-<template>
-  <h1>Code Learning Platform</h1>
-</template>
+<template></template>
 
 <script lang="ts" setup>
-  definePageMeta({
-    middleware: 'unauthenticated',
-    layout: 'unauthenticated'
-  });
+definePageMeta({
+  middleware: 'unauthenticated',
+  layout: 'unauthenticated'
+});
+
+navigateTo('/login');
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

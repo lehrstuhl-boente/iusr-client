@@ -1,6 +1,6 @@
 <template>
-  <h1>Create a New Account</h1>
-  <div class="max-w-lg">
+  <div class="bg-white p-8 pt-6 max-w-lg shadow rounded-lg mx-auto mt-10">
+    <h2 class="mt-0 text-center mb-5">Register</h2>
     <form action="">
       <label>
         <span>Email</span>
@@ -14,11 +14,14 @@
         <span>Confirm Password</span>
         <input type="password" v-model="passwordRepeat">
       </label>
-      <input type="submit" class="btn" @click.prevent="register" value="Register">
+      <input type="submit" class="btn mt-3 w-full" @click.prevent="register" value="Register">
     </form>
-    <div class="text-danger">
-      <div v-for="msg in errorMessages">{{ msg }}</div>
+    <div class="text-danger text-center">
+      <div v-for="msg in errorMessages" class="first:mt-5">{{ msg }}</div>
     </div>
+  </div>
+  <div class="flex">
+    <NuxtLink to="/login" class="mt-6 mx-auto">Go to Login</NuxtLink>
   </div>
 </template>
 
@@ -35,7 +38,7 @@ const authStore = useAuthStore();
 const email = ref('');
 const password = ref('');
 const passwordRepeat = ref('');
-const errorMessages = ref([]);
+const errorMessages = ref();
 
 const register = async () => {
   try {
@@ -45,7 +48,7 @@ const register = async () => {
       passwordRepeat: passwordRepeat.value
     });
   } catch (e: any) {
-    errorMessages.value = e.response.data.message
+    errorMessages.value = Object.values(e.response.data).flat(1);
   }
 };
 </script>

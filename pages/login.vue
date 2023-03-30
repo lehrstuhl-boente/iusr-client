@@ -1,6 +1,6 @@
 <template>
-  <h1>Login to Your Account</h1>
-  <div class="max-w-lg">
+  <div class="bg-white p-8 pt-6 max-w-lg shadow rounded-lg mx-auto mt-10">
+    <h2 class="mt-0 text-center mb-5">Login</h2>
     <form action="">
       <label>
         <span>Email</span>
@@ -10,11 +10,14 @@
         <span>Password</span>
         <input type="password" v-model="password">
       </label>
-      <input type="submit" class="btn" @click.prevent="login" value="Login">
+      <input type="submit" class="btn mt-3 w-full" @click.prevent="login" value="Login">
     </form>
-    <div class="text-danger">
-      <div v-for="msg in errorMessages">{{ msg }}</div>
+    <div class="text-danger text-center">
+      <div v-for="msg in errorMessages" class="first:mt-5">{{ msg }}</div>
     </div>
+  </div>
+  <div class="flex">
+    <NuxtLink to="/register" class="mt-6 mx-auto">Go to Register</NuxtLink>
   </div>
 </template>
 
@@ -30,13 +33,14 @@ const authStore = useAuthStore();
 
 const email = ref('');
 const password = ref('');
-const errorMessages = ref([]);
+const errorMessages = ref();
 
 const login = async () => {
   try {
     await authStore.login({ email: email.value, password: password.value });
   } catch (e: any) {
-    errorMessages.value = e.response.data.message;
+    console.log(Object.values(e.response.data))
+    errorMessages.value = Object.values(e.response.data).flat(1);
   }
 };
 </script>

@@ -25,7 +25,9 @@
             <textarea cols="30" rows="10" v-model="course.description"></textarea>
           </label>
           <div class="flex justify-between items-center">
-            <a href="#" class="text-danger hover:text-danger" @click="deleteCourse">Delete Course</a>
+            <a href="#" class="text-danger hover:text-danger hover:underline hover:underline-offset-4"
+              @click="deleteCourse">Delete
+              Course</a>
             <input type="submit" value="Update" class="btn" @click.prevent="updateCourse">
           </div>
         </form>
