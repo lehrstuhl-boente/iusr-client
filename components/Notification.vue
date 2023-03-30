@@ -10,8 +10,6 @@
 <script lang="ts" setup>
 // Possible Types: danger, warning, success; if another string is set, it defaults to success
 
-import { useNotificationStore } from '~~/stores/notification.store';
-
 const notificationStore = useNotificationStore();
 
 const color = ref('');

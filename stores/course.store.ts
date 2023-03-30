@@ -1,5 +1,3 @@
-import { defineStore } from 'pinia';
-
 interface CourseStoreState {
   course: Course | null;
 }

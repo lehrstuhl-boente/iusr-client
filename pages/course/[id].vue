@@ -22,10 +22,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useAuthStore } from '~~/stores/auth.store';
-import { useCourseStore } from '~~/stores/course.store';
-import { storeToRefs } from 'pinia';
-
 definePageMeta({
   middleware: 'authenticated'
 });

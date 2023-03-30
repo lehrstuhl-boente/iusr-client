@@ -18,8 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useCourseStore } from '~~/stores/course.store';
-
 const { show, chapter } = defineProps({
   show: { required: true, type: Boolean },
   chapter: { required: true, type: Object }

@@ -1,6 +1,3 @@
-import { defineStore } from 'pinia';
-import { useNotificationStore } from './notification.store';
-
 interface AuthStoreState {
   user: User | null;
 }

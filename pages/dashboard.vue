@@ -13,25 +13,21 @@
 </template>
 
 <script lang="ts" setup>
-  import { useAuthStore } from '~~/stores/auth.store';
+definePageMeta({
+  middleware: 'authenticated'
+});
 
-  definePageMeta({
-    middleware: 'authenticated'
-  });
+const authStore = useAuthStore();
 
-  const authStore = useAuthStore();
+const courses = ref();
+const showCourseModal = ref(false);
 
-  const courses = ref();
-  const showCourseModal = ref(false);
-
-  try {
-    const response = await useApi().get('/courses');
-    courses.value = response.data;
-  } catch(e) {
-    console.error(e);
-  }
+try {
+  const response = await useApi().get('/courses');
+  courses.value = response.data;
+} catch (e) {
+  console.error(e);
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

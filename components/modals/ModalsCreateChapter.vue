@@ -15,9 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useCourseStore } from '~~/stores/course.store';
-import { storeToRefs } from 'pinia';
-
 const { show } = defineProps({ show: { required: true, type: Boolean } });
 const emit = defineEmits(['close']);
 

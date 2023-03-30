@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useAuthStore } from '~~/stores/auth.store';
 
 export const useApi = () => {
   const config = useRuntimeConfig();

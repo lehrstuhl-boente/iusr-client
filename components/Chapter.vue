@@ -32,8 +32,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useCourseStore } from '~~/stores/course.store';
-
 const { chapter, editable } = defineProps({ chapter: { required: true, type: Object }, editable: { type: Boolean, default: false } });
 
 const courseStore = useCourseStore();

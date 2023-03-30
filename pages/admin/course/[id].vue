@@ -41,9 +41,6 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia';
-import { useCourseStore } from '~~/stores/course.store';
-
 definePageMeta({
   middleware: 'admin'
 });

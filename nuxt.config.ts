@@ -23,6 +23,12 @@ export default defineNuxtConfig({
       baseURL: process.env.BASE_URL,
     },
   },
+  imports: {
+    dirs: ['stores'],
+  },
+  pinia: {
+    autoImports: ['defineStore', 'storeToRefs'],
+  },
   tailwindcss: {
     config: {
       content: [],

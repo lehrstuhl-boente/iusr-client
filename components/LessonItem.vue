@@ -25,8 +25,6 @@
 </template>
 
 <script setup>
-import { useCourseStore } from '~~/stores/course.store';
-
 const { lesson, editable } = defineProps({ lesson: { required: true }, editable: { type: Boolean } });
 
 const courseStore = useCourseStore();
