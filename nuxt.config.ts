@@ -41,6 +41,7 @@ export default defineNuxtConfig({
             'primary-hover': '#3730A3',
             'primary-active': '#312E81',
             danger: '#991B1B',
+            dark: '#101010',
           },
         },
         container: {
