@@ -26,6 +26,7 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['stores'],
   },
+  css: [],
   pinia: {
     autoImports: ['defineStore', 'storeToRefs'],
   },
