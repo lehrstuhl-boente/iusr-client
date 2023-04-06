@@ -1,5 +1,7 @@
 <template>
-  <QuillEditor2 />
+  <div>
+
+  </div>
 </template>
 
 <script setup>

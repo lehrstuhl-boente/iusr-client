@@ -11,7 +11,9 @@
       <div class="w-1/3 h-full flex flex-col">
         <RichtextEditor />
       </div>
-      <div class="p-2 w-1/3 bg-gray-800 h-full overflow-auto">Monaco Editor</div>
+      <div class="w-1/3 h-full flex flex-col">
+        <MonacoEditor lang="python" :options="monacoOptions" class="h-full" />
+      </div>
       <div class="p-2 w-1/3 justify-self-end bg-black h-full text-white overflow-auto">Output</div>
     </div>
     <div class="flex justify-end mt-auto p-2 bg-gray-900 w-full text-white">
@@ -34,7 +36,17 @@ definePageMeta({
 const route = useRoute();
 const courseStore = useCourseStore();
 
-const richtextContent = ref('AAA');
+const monacoOptions = {
+  theme: 'vs-dark',
+  scrollBeyondLastLine: false,
+  minimap: { enabled: false },
+  padding: {
+    top: 10,
+    bottom: 10,
+  },
+  fontSize: 14,
+  automaticLayout: true
+}
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 </script>

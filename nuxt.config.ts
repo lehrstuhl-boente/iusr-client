@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
+    'nuxt-monaco-editor',
   ],
   ssr: false,
   app: {

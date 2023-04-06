@@ -8,7 +8,7 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
-const content = ref('SCUSCU');
+const content = ref('Test');
 
 onMounted(() => {
   const options = {
