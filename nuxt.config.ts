@@ -10,7 +10,12 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'IusR – Code Learning Platform',
-      meta: [{ name: 'descirption', content: 'This is the description.' }],
+      meta: [
+        {
+          name: 'description',
+          content: 'IusR is an open-source code-learning platform.',
+        },
+      ],
       link: [
         {
           rel: 'stylesheet',
