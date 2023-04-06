@@ -25,15 +25,27 @@
   .btn-danger {
     @apply bg-transparent hover:bg-danger border border-danger text-danger;
   }
-  .icon-btn {
-    @apply hover:text-primary hover:bg-indigo-50 active:bg-indigo-100 active:text-primary-active hover:cursor-pointer rounded-md p-1;
+  .btn-light {
+    @apply bg-inherit p-2 hover:bg-white hover:bg-opacity-10 active:bg-opacity-5 hover:cursor-pointer;
   }
-  .icon-btn.danger {
+
+  .icon-btn {
+    @apply rounded-md p-1 hover:cursor-pointer select-none;
+  }
+  .icon-btn-primary {
+    @apply hover:text-primary hover:bg-indigo-50 active:bg-indigo-100 active:text-primary-active;
+  }
+  .icon-btn-danger {
     @apply hover:text-red-700 hover:bg-red-50 active:bg-red-100 active:text-red-800;
   }
+  .icon-btn-light {
+    @apply hover:bg-white hover:bg-opacity-10 active:bg-opacity-5 p-2;
+  }
+
   .card {
     @apply p-3 rounded-md bg-white shadow-md h-full;
   }
+
   label {
     @apply block text-gray-700;
   }

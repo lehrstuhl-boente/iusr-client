@@ -8,10 +8,10 @@
     <div v-else class="mr-1 text-primary" style="min-width: 30px;">Lesson {{ lesson.index + 1 }}</div>
     <div class="p-2"><strong>{{ lesson.title }}</strong></div>
     <div v-if="editable" class="ml-auto">
-      <span class="material-icons-outlined icon-btn danger" @click="deleteLesson">delete</span>
-      <span class="material-icons-outlined icon-btn ml-1" @click="showLessonModal = true">edit</span>
-      <span class="material-icons-outlined icon-btn">arrow_upward</span>
-      <span class="material-icons-outlined icon-btn">arrow_downward</span>
+      <span class="material-icons-outlined icon-btn icon-btn-danger" @click="deleteLesson">delete</span>
+      <span class="material-icons-outlined icon-btn icon-btn-primary ml-1" @click="showLessonModal = true">edit</span>
+      <span class="material-icons-outlined icon-btn icon-btn-primary">arrow_upward</span>
+      <span class="material-icons-outlined icon-btn icon-btn-primary">arrow_downward</span>
     </div>
     <div v-else class="ml-auto">
       <NuxtLink :to="`/course/${courseStore.courseId}/lesson/${lesson.id}`" class="inline-flex items-center">
