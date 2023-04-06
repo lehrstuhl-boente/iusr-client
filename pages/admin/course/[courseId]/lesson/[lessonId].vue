@@ -1,7 +1,10 @@
 <template>
+  <Teleport to="body">
+    <Sidebar :show="showSidebar" @close="showSidebar = false" />
+  </Teleport>
   <div class="h-screen flex flex-col" v-if="course && lesson">
     <header class="flex items-center text-white bg-dark sticky top-0 z-10 p-2">
-      <button class="material-icons-outlined mr-1 icon-btn icon-btn-light">menu</button>
+      <button class="material-icons-outlined mr-1 icon-btn icon-btn-light" @click="showSidebar = true">menu</button>
       <div>
         <div class="opacity-50 text-xs">{{ course.title }}</div>
         <div class="text-sm">{{ lesson.title }}</div>
@@ -47,6 +50,8 @@ const lessonStore = useLessonStore();
 
 const { course } = storeToRefs(courseStore);
 const { lesson } = storeToRefs(lessonStore);
+
+const showSidebar = ref(false);
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 await lessonStore.getLesson(parseInt(route.params.lessonId as string))
