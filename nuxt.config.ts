@@ -4,18 +4,13 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    'nuxt-monaco-editor',
+    'nuxt-monaco-editor'
   ],
   ssr: false,
   app: {
     head: {
       title: 'IusR – Code Learning Platform',
-      meta: [
-        {
-          name: 'description',
-          content: 'IusR is an open-source code-learning platform.',
-        },
-      ],
+      meta: [{ name: 'description', content: 'IusR is an open-source code-learning platform.' }],
       link: [
         {
           rel: 'stylesheet',
@@ -32,7 +27,6 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['stores'],
   },
-  css: [],
   pinia: {
     autoImports: ['defineStore', 'storeToRefs'],
   },

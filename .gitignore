@@ -5,5 +5,5 @@ node_modules
 .cache
 .output
 .env
-.DS_Store
 dist
+.DS_Store

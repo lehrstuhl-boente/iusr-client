@@ -4,7 +4,4 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import Sidebar from '~/components/Sidebar.vue';
-
-</script>
+<script lang="ts" setup></script>
