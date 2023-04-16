@@ -1,8 +1,12 @@
 <template>
-  <MonacoEditor lang="python" :options="options" v-model="content" />
+  <MonacoEditor :lang="lesson.lang" :options="options" v-model="content" v-if="lesson" />
+  <div v-else>Lesson store is empty.</div>
 </template>
 
 <script lang="ts" setup>
+const lessonStore = useLessonStore();
+
+const { lesson } = storeToRefs(lessonStore);
 const content = ref('print("Hello World")');
 
 const options = {

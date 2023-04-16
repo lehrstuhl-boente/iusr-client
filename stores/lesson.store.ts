@@ -6,6 +6,7 @@ interface Lesson {
   id: number;
   title: string;
   chapterId: number;
+  lang: string;
 }
 
 export const useLessonStore = defineStore('lesson-store', {
