@@ -29,10 +29,9 @@
       <div class="p-2 w-1/3 justify-self-end bg-black h-full text-white overflow-auto">Output</div>
     </div>
     <div class="flex justify-end mt-auto p-2 bg-dark w-full text-white">
-      <NuxtLink :to="'/admin/course/' + $route.params.courseId"
-        class="inline-flex mr-auto py-2  px-3 rounded hover:bg-white hover:text-white hover:bg-opacity-10 active:bg-opacity-5">
+      <button @click="closeLesson" class="inline-flex mr-auto py-2  px-3 rounded hover:bg-white hover:text-white hover:bg-opacity-10 active:bg-opacity-5">
         <span class="material-icons-outlined mr-1">close</span>Close
-      </NuxtLink>
+      </button>
       <button class="btn">Previous</button>
       <button class="btn ml-2">Next</button>
     </div>
@@ -57,6 +56,12 @@ const showSidebar = ref(false);
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 await lessonStore.getLesson(parseInt(route.params.lessonId as string));
+
+const closeLesson = () => {
+  if(confirm('Do you want to close this lesson? All unsaved changes will be lost.')) {
+    navigateTo('/admin/course/' + route.params.courseId);
+  }
+}
 </script>
 
 <style></style>
