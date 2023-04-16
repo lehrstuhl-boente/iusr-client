@@ -5,7 +5,7 @@
   <div class="h-screen flex flex-col" v-if="course && lesson">
     <header class="flex items-center text-white bg-dark sticky top-0 z-10 p-2">
       <button class="material-icons-outlined mr-1 icon-btn icon-btn-light" @click="showSidebar = true">menu</button>
-      <div>
+      <div class="ml-2">
         <div class="opacity-50 text-xs">{{ course.title }}</div>
         <div class="text-sm">{{ lesson.title }}</div>
       </div>
