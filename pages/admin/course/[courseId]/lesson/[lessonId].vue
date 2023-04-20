@@ -3,7 +3,7 @@
     <Sidebar :show="showSidebar" @close="showSidebar = false" />
   </Teleport>
   <div class="h-screen flex flex-col" v-if="course && lesson">
-    <header class="flex items-center text-white bg-dark sticky top-0 z-10 p-2">
+    <header class="flex items-center text-white bg-dark z-10 p-2" style="height: 60px;">
       <button class="material-icons-outlined mr-1 icon-btn icon-btn-light" @click="showSidebar = true">menu</button>
       <div class="ml-2">
         <div class="opacity-50 text-xs">{{ course.title }}</div>
@@ -13,8 +13,8 @@
         <span class="material-icons-outlined mr-1">save</span>Save
       </button>
     </header>
-    <div class="flex h-full">
-      <div class="w-1/3 h-full flex flex-col">
+    <div class="flex h-[calc(100%_-_120px)]">
+      <div class="w-1/3 flex flex-col">
         <RichtextEditor v-model="lesson.task" />
       </div>
       <div class="w-1/3 h-full flex flex-col">
@@ -26,9 +26,11 @@
           <button class="btn btn-primary">Run</button>
         </div>
       </div>
-      <div class="p-2 w-1/3 justify-self-end bg-black h-full text-white overflow-auto">Output</div>
+      <div class="p-2 w-1/3 justify-self-end bg-black text-white overflow-auto">
+        <div v-for="n in 50">Hello</div>
+      </div>
     </div>
-    <div class="flex justify-end mt-auto p-2 bg-dark w-full text-white">
+    <div class="flex justify-end items-center mt-auto p-2 bg-dark w-full text-white" style="height: 60px;">
       <button @click="closeLesson" class="inline-flex mr-auto py-2  px-3 rounded hover:bg-white hover:text-white hover:bg-opacity-10 active:bg-opacity-5">
         <span class="material-icons-outlined mr-1">close</span>Close
       </button>
@@ -49,8 +51,6 @@ const route = useRoute();
 const courseStore = useCourseStore();
 const lessonStore = useLessonStore();
 
-const test = ref('HELLO');
-
 const { course } = storeToRefs(courseStore);
 const { lesson } = storeToRefs(lessonStore);
 
@@ -70,4 +70,8 @@ const saveLesson = async () => {
 }
 </script>
 
-<style></style>
+<style>
+  .ql-container {
+    overflow: auto;
+  }
+</style>
