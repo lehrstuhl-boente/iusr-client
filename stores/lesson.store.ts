@@ -27,6 +27,18 @@ export const useLessonStore = defineStore('lesson-store', {
         useNotification('danger', 'Could not fetch lesson.');
       }
     },
+    async save() {
+      if(!this.lesson) {
+        useNotification('danger', 'Cannot save without loaded lesson.');
+        return;
+      }
+      try {
+        await useApi().patch('/lessons/' + this.lesson.id, this.lesson);
+        useNotification('success', 'Lesson saved.');
+      } catch(e) {
+        useNotification('danger', 'Could not save lesson.');
+      }
+    }
     // this method is used when the store is already populated but the same course data should be updated
     /* async update() {
       if (!this.lesson) {

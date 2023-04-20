@@ -9,7 +9,7 @@
         <div class="opacity-50 text-xs">{{ course.title }}</div>
         <div class="text-sm">{{ lesson.title }}</div>
       </div>
-      <button class="inline-flex ml-auto py-2 px-3 rounded hover:bg-white hover:bg-opacity-10 active:bg-opacity-5">
+      <button class="inline-flex ml-auto py-2 px-3 rounded hover:bg-white hover:bg-opacity-10 active:bg-opacity-5" @click="saveLesson">
         <span class="material-icons-outlined mr-1">save</span>Save
       </button>
     </header>
@@ -63,6 +63,10 @@ const closeLesson = () => {
   if(confirm('Do you want to close this lesson? All unsaved changes will be lost.')) {
     navigateTo('/admin/course/' + route.params.courseId);
   }
+}
+
+const saveLesson = async () => {
+  await lessonStore.save();
 }
 </script>
 

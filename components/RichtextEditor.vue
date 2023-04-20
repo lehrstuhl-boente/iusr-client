@@ -23,6 +23,8 @@ onMounted(() => {
         ['bold', 'italic', 'underline'],
         [{ 'color': [] }, { 'background': [] }],
         [{ 'align': [] }],
+        ['blockquote'],
+        ['code'],
         ['code-block'],
         ['clean']
       ]
@@ -40,3 +42,9 @@ onMounted(() => {
   });
 });
 </script>
+
+<style lang="postcss">
+  .ql-snow .ql-editor code {
+    @apply bg-gray-200;
+  }
+</style>
