@@ -1,5 +1,5 @@
 <template>
-  <div class="editor">{{ content }}</div>
+  <div class="editor"></div>
 </template>
 
 <script setup>
@@ -8,7 +8,8 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
-const content = ref('Test');
+const { modelValue } = defineProps(['modelValue']);
+const emit = defineEmits(['update:modelValue']);
 
 onMounted(() => {
   const options = {
@@ -29,10 +30,13 @@ onMounted(() => {
     placeholder: 'Lecture content here ...'
   };
 
-  var quill = new Quill('.editor', options);
+  const quill = new Quill('.editor', options);
+
+  // set initial text; TODO: despite on the first load, changes in the content cannot be passed down
+  quill.pasteHTML(modelValue);
 
   quill.on('text-change', (delta, onDelta, source) => {
-    console.log(quill.getText());
+    emit('update:modelValue', quill.root.innerHTML);
   });
 });
 </script>

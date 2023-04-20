@@ -23,6 +23,8 @@ const { show, chapter } = defineProps({
 });
 const emit = defineEmits(['close']);
 
+const { course } = useCourseStore();
+
 const title = ref('');
 
 const close = () => {
@@ -40,7 +42,7 @@ const createChapter = async () => {
       title: title.value,
       chapterId: chapter.id
     });
-    navigateTo('/admin/lesson/' + data.id);
+    navigateTo('/admin/course/' + course.id + '/lesson/' + data.id);
     useNotification('success', 'Lesson created.');
   } catch (e) {
     useNotification('danger', 'Could not create lesson.');

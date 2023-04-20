@@ -39,7 +39,6 @@ const title = ref(lesson.title);
 const chapterId = ref(lesson.chapterId);
 
 const editLesson = async () => {
-  console.log(title);
   if (!title.value) {
     useNotification('warning', 'Title cannot be empty.');
     return;

@@ -15,7 +15,7 @@
     </header>
     <div class="flex h-full">
       <div class="w-1/3 h-full flex flex-col">
-        <RichtextEditor />
+        <RichtextEditor v-model="lesson.task" />
       </div>
       <div class="w-1/3 h-full flex flex-col">
         <CodeEditor class="h-full" />
@@ -48,6 +48,8 @@ definePageMeta({
 const route = useRoute();
 const courseStore = useCourseStore();
 const lessonStore = useLessonStore();
+
+const test = ref('HELLO');
 
 const { course } = storeToRefs(courseStore);
 const { lesson } = storeToRefs(lessonStore);

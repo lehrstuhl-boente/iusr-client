@@ -7,6 +7,8 @@ interface Lesson {
   title: string;
   chapterId: number;
   lang: string;
+  task: string;
+  code: string;
 }
 
 export const useLessonStore = defineStore('lesson-store', {

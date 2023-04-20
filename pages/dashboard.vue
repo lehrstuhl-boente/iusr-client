@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-between mt-5 mb-6">
     <h1>My Courses</h1>
-    <a class="btn inline-block right" @click="showCourseModal = true">Create Course</a>
+    <a class="btn inline-block right" @click="showCourseModal = true" v-if="authStore.isAdmin">Create Course</a>
   </div>
   <div v-if="!courses">
     There are no courses.
