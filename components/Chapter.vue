@@ -17,8 +17,8 @@
             @click="showLessonModal = true">add</span>
         </div>
         <div class="flex flex-col" v-if="chapter.lessons.length != 0">
-          <LessonItem v-for="(lesson, index) in chapter.lessons" :lesson="{ index, ...lesson }" :key="lesson.id"
-            :editable="editable" />
+          <LessonItem v-for="lesson in chapter.lessons" :lesson="lesson" :lessonCount="chapter.lessons.length"
+            :key="lesson.id" :editable="editable" />
         </div>
       </div>
     </div>

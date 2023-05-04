@@ -5,13 +5,17 @@
       <span class="material-icons-outlined mr-1 text-primary">lock_open</span>
       <span class="material-icons-outlined mr-1 text-danger">lock</span>
     </template>
-    <div v-else class="mr-1 text-primary" style="min-width: 30px;">Lesson {{ lesson.index + 1 }}</div>
+    <div v-else class="mr-1 text-primary" style="min-width: 30px;">Lesson {{ lesson.position }}</div>
     <div class="p-2"><strong>{{ lesson.title }}</strong></div>
     <div v-if="editable" class="ml-auto">
       <span class="material-icons-outlined icon-btn icon-btn-danger" @click="deleteLesson">delete</span>
       <span class="material-icons-outlined icon-btn icon-btn-primary ml-1" @click="showLessonModal = true">edit</span>
-      <span class="material-icons-outlined icon-btn icon-btn-primary">arrow_upward</span>
-      <span class="material-icons-outlined icon-btn icon-btn-primary">arrow_downward</span>
+      <span class="material-icons-outlined icon-btn icon-btn-primary" @click="moveUp"
+        v-if="lesson.position !== 1">arrow_upward</span>
+      <span class="material-icons-outlined icon-btn invisible" v-else>arrow_upward</span>
+      <span class="material-icons-outlined icon-btn icon-btn-primary" @click="moveDown"
+        v-if="lesson.position !== lessonCount">arrow_downward</span>
+      <span class="material-icons-outlined icon-btn invisible" v-else>arrow_downward</span>
     </div>
     <div v-else class="ml-auto">
       <NuxtLink :to="`/course/${courseStore.courseId}/lesson/${lesson.id}`" class="inline-flex items-center">
@@ -25,7 +29,7 @@
 </template>
 
 <script setup>
-const { lesson, editable } = defineProps({ lesson: { required: true }, editable: { type: Boolean } });
+const { lesson, lessonCount, editable } = defineProps({ lesson: { required: true }, lessonCount: { required: true }, editable: { type: Boolean } });
 
 const courseStore = useCourseStore();
 
@@ -42,5 +46,15 @@ const deleteLesson = async () => {
       useNotification('danger', 'Could not delete chapter.');
     }
   }
+};
+
+const moveUp = async () => {
+  await courseStore.moveLessonUp(lesson.id);
+  courseStore.update();
+};
+
+const moveDown = () => {
+  courseStore.moveLessonDown(lesson.id);
+  courseStore.update();
 };
 </script>
