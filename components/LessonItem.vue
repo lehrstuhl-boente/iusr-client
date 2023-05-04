@@ -53,8 +53,8 @@ const moveUp = async () => {
   courseStore.update();
 };
 
-const moveDown = () => {
-  courseStore.moveLessonDown(lesson.id);
+const moveDown = async () => {
+  await courseStore.moveLessonDown(lesson.id);
   courseStore.update();
 };
 </script>

@@ -55,7 +55,11 @@ export const useCourseStore = defineStore('course-store', {
       }
     },
     async moveLessonDown(lessonId: number) {
-      
-    }
+      try {
+        await useApi().patch('/lessons/' + lessonId + '/down');
+      } catch (e) {
+        useNotification('danger', 'Cannot move lesson down.');
+      }
+    },
   },
 });

@@ -9,7 +9,8 @@
         <div class="opacity-50 text-xs">{{ course.title }}</div>
         <div class="text-sm">{{ lesson.title }}</div>
       </div>
-      <button class="inline-flex ml-auto py-2 px-3 rounded hover:bg-white hover:bg-opacity-10 active:bg-opacity-5" @click="saveLesson">
+      <button class="inline-flex ml-auto py-2 px-3 rounded hover:bg-white hover:bg-opacity-10 active:bg-opacity-5"
+        @click="saveLesson">
         <span class="material-icons-outlined mr-1">save</span>Save
       </button>
     </header>
@@ -22,8 +23,8 @@
         <div class="p-2 mt-auto bg-dark flex items-center justify-end">
           <span class="material-icons-outlined text-white icon-btn icon-btn-light mr-auto">open_in_full</span>
           <LanguageSelect class="ml-3" />
-          <!-- <span class="material-icons-outlined ml-2 text-white mr-3 icon-btn icon-btn-light">restart_alt</span> -->
-          <button class="btn btn-primary">Run</button>
+          <!-- <span class="material-icons-outlined ml-2 text-white icon-btn icon-btn-light">restart_alt</span> -->
+          <button class="btn btn-primary ml-3">Run</button>
         </div>
       </div>
       <div class="p-2 w-1/3 justify-self-end bg-black text-white overflow-auto">
@@ -31,7 +32,8 @@
       </div>
     </div>
     <div class="flex justify-end items-center mt-auto p-2 bg-dark w-full text-white" style="height: 60px;">
-      <button @click="closeLesson" class="inline-flex mr-auto py-2  px-3 rounded hover:bg-white hover:text-white hover:bg-opacity-10 active:bg-opacity-5">
+      <button @click="closeLesson"
+        class="inline-flex mr-auto py-2  px-3 rounded hover:bg-white hover:text-white hover:bg-opacity-10 active:bg-opacity-5">
         <span class="material-icons-outlined mr-1">close</span>Close
       </button>
       <button class="btn">Previous</button>
@@ -60,7 +62,7 @@ await courseStore.getCourse(parseInt(route.params.courseId as string));
 await lessonStore.getLesson(parseInt(route.params.lessonId as string));
 
 const closeLesson = () => {
-  if(confirm('Do you want to close this lesson? All unsaved changes will be lost.')) {
+  if (confirm('Do you want to close this lesson? All unsaved changes will be lost.')) {
     navigateTo('/admin/course/' + route.params.courseId);
   }
 }
@@ -71,7 +73,7 @@ const saveLesson = async () => {
 </script>
 
 <style>
-  .ql-container {
-    overflow: auto;
-  }
+.ql-container {
+  overflow: auto;
+}
 </style>
