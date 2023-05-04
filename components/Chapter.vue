@@ -16,10 +16,10 @@
           <span class="material-icons-outlined icon-btn icon-btn-primary ml-2" :class="{ active: showDetails }"
             @click="showLessonModal = true">add</span>
         </div>
-        <div class="flex flex-col" v-if="chapter.lessons.length != 0">
+        <TransitionGroup tag="div" class="relative" name="swap" v-if="chapter.lessons.length != 0">
           <LessonItem v-for="lesson in chapter.lessons" :lesson="lesson" :lessonCount="chapter.lessons.length"
             :key="lesson.id" :editable="editable" />
-        </div>
+        </TransitionGroup>
       </div>
     </div>
     <div v-if="editable" class="flex flex-col ml-3">
@@ -90,5 +90,9 @@ const moveDown = async () => {
 
 .arrow.active {
   transform: rotate(180deg);
+}
+
+.swap-move {
+  transition: all 0.3s ease;
 }
 </style>

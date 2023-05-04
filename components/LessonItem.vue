@@ -1,29 +1,31 @@
 <template>
-  <div class="flex items-center px-2 border-t first:border-t-0">
-    <template v-if="!editable">
-      <span class="material-icons-outlined mr-1 text-emerald-400">check_circle</span>
-      <span class="material-icons-outlined mr-1 text-primary">lock_open</span>
-      <span class="material-icons-outlined mr-1 text-danger">lock</span>
-    </template>
-    <div v-else class="mr-1 text-primary" style="min-width: 30px;">Lesson {{ lesson.position }}</div>
-    <div class="p-2"><strong>{{ lesson.title }}</strong></div>
-    <div v-if="editable" class="ml-auto">
-      <span class="material-icons-outlined icon-btn icon-btn-danger" @click="deleteLesson">delete</span>
-      <span class="material-icons-outlined icon-btn icon-btn-primary ml-1" @click="showLessonModal = true">edit</span>
-      <span class="material-icons-outlined icon-btn icon-btn-primary" @click="moveUp"
-        v-if="lesson.position !== 1">arrow_upward</span>
-      <span class="material-icons-outlined icon-btn invisible" v-else>arrow_upward</span>
-      <span class="material-icons-outlined icon-btn icon-btn-primary" @click="moveDown"
-        v-if="lesson.position !== lessonCount">arrow_downward</span>
-      <span class="material-icons-outlined icon-btn invisible" v-else>arrow_downward</span>
+  <div>
+    <div class="flex items-center px-2 border-t first:border-t-0">
+      <template v-if="!editable">
+        <span class="material-icons-outlined mr-1 text-emerald-400">check_circle</span>
+        <span class="material-icons-outlined mr-1 text-primary">lock_open</span>
+        <span class="material-icons-outlined mr-1 text-danger">lock</span>
+      </template>
+      <div v-else class="mr-1 text-primary" style="min-width: 30px;">Lesson {{ lesson.position }}</div>
+      <div class="p-2"><strong>{{ lesson.title }}</strong></div>
+      <div v-if="editable" class="ml-auto">
+        <span class="material-icons-outlined icon-btn icon-btn-danger" @click="deleteLesson">delete</span>
+        <span class="material-icons-outlined icon-btn icon-btn-primary ml-1" @click="showLessonModal = true">edit</span>
+        <span class="material-icons-outlined icon-btn icon-btn-primary" @click="moveUp"
+          v-if="lesson.position !== 1">arrow_upward</span>
+        <span class="material-icons-outlined icon-btn invisible" v-else>arrow_upward</span>
+        <span class="material-icons-outlined icon-btn icon-btn-primary" @click="moveDown"
+          v-if="lesson.position !== lessonCount">arrow_downward</span>
+        <span class="material-icons-outlined icon-btn invisible" v-else>arrow_downward</span>
+      </div>
+      <div v-else class="ml-auto">
+        <NuxtLink :to="`/course/${courseStore.courseId}/lesson/${lesson.id}`" class="inline-flex items-center">
+          Open <span class="material-icons-outlined">play_arrow</span>
+        </NuxtLink>
+      </div>
     </div>
-    <div v-else class="ml-auto">
-      <NuxtLink :to="`/course/${courseStore.courseId}/lesson/${lesson.id}`" class="inline-flex items-center">
-        Open <span class="material-icons-outlined">play_arrow</span>
-      </NuxtLink>
-    </div>
+    <ModalsEditLesson :show="showLessonModal" :lesson="lesson" @close="showLessonModal = false" />
   </div>
-  <ModalsEditLesson :show="showLessonModal" :lesson="lesson" @close="showLessonModal = false" />
 </template>
 
 <script setup>
