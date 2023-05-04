@@ -22,7 +22,7 @@
         <div class="p-2 mt-auto bg-dark flex items-center justify-end">
           <span class="material-icons-outlined text-white icon-btn icon-btn-light mr-auto">open_in_full</span>
           <LanguageSelect class="ml-3" />
-          <span class="material-icons-outlined ml-2 text-white mr-3 icon-btn icon-btn-light">restart_alt</span>
+          <!-- <span class="material-icons-outlined ml-2 text-white mr-3 icon-btn icon-btn-light">restart_alt</span> -->
           <button class="btn btn-primary">Run</button>
         </div>
       </div>

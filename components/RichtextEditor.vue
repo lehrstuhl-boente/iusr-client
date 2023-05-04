@@ -20,9 +20,11 @@ onMounted(() => {
       },
       toolbar: [
         [{ 'header': [1, 2, 3, false] }],
-        ['bold', 'italic', 'underline'],
+        ['bold', 'italic', 'underline', 'strike'],
         [{ 'color': [] }, { 'background': [] }],
         [{ 'align': [] }],
+        ['link'],
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
         ['blockquote'],
         ['code'],
         ['code-block'],
