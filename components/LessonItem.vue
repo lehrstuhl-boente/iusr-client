@@ -23,9 +23,7 @@
       </NuxtLink>
     </div>
   </div>
-  <ModalsEditLesson :show="showLessonModal" :lesson="lesson" @close="showLessonModal = false">
-    asdfasdf
-  </ModalsEditLesson>
+  <ModalsEditLesson :show="showLessonModal" :lesson="lesson" @close="showLessonModal = false" />
 </template>
 
 <script setup>
@@ -49,12 +47,20 @@ const deleteLesson = async () => {
 };
 
 const moveUp = async () => {
-  await courseStore.moveLessonUp(lesson.id);
-  courseStore.update();
+  try {
+    await useApi().patch('/lessons/' + lesson.id + '/up');
+    courseStore.update();
+  } catch (e) {
+    useNotification('danger', 'Cannot move lesson up.');
+  }
 };
 
 const moveDown = async () => {
-  await courseStore.moveLessonDown(lesson.id);
-  courseStore.update();
+  try {
+    await useApi().patch('/lessons/' + lesson.id + '/down');
+    courseStore.update();
+  } catch (e) {
+    useNotification('danger', 'Cannot move lesson down.');
+  }
 };
 </script>

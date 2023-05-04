@@ -23,8 +23,10 @@
       </div>
     </div>
     <div v-if="editable" class="flex flex-col ml-3">
-      <span class="material-icons-outlined icon-btn icon-btn-primary p-0 hover:bg-inherit">arrow_upward</span>
-      <span class="material-icons-outlined icon-btn icon-btn-primary p-0 hover:bg-inherit">arrow_downward</span>
+      <span class="material-icons-outlined icon-btn icon-btn-primary p-0 hover:bg-inherit" @click="moveUp"
+        v-if="chapter.position !== 1">arrow_upward</span>
+      <span class="material-icons-outlined icon-btn icon-btn-primary p-0 hover:bg-inherit" @click="moveDown"
+        v-if="chapter.position !== course?.chapters.length">arrow_downward</span>
     </div>
   </div>
   <ModalsEditChapter :show="showChapterModal" :chapter="chapter" @close="showChapterModal = false" />
@@ -35,6 +37,7 @@
 const { chapter, editable } = defineProps({ chapter: { required: true, type: Object }, editable: { type: Boolean, default: false } });
 
 const courseStore = useCourseStore();
+const { course } = storeToRefs(courseStore);
 
 const showDetails = ref(false);
 const showChapterModal = ref(false);
@@ -58,6 +61,24 @@ const deleteChapter = async () => {
       console.error(e);
       useNotification('danger', 'Could not delete chapter.');
     }
+  }
+};
+
+const moveUp = async () => {
+  try {
+    await useApi().patch('/chapters/' + chapter.id + '/up');
+    courseStore.update();
+  } catch (e) {
+    useNotification('danger', 'Cannot move chapter up.');
+  }
+};
+
+const moveDown = async () => {
+  try {
+    await useApi().patch('/chapters/' + chapter.id + '/down');
+    courseStore.update();
+  } catch (e) {
+    useNotification('danger', 'Cannot move chapter down.');
   }
 };
 </script>

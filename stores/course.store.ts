@@ -47,19 +47,5 @@ export const useCourseStore = defineStore('course-store', {
       }
       await this.getCourse(this.course.id);
     },
-    async moveLessonUp(lessonId: number) {
-      try {
-        await useApi().patch('/lessons/' + lessonId + '/up');
-      } catch (e) {
-        useNotification('danger', 'Cannot move lesson up.');
-      }
-    },
-    async moveLessonDown(lessonId: number) {
-      try {
-        await useApi().patch('/lessons/' + lessonId + '/down');
-      } catch (e) {
-        useNotification('danger', 'Cannot move lesson down.');
-      }
-    },
   },
 });
