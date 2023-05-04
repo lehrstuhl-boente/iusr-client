@@ -4,10 +4,17 @@
 </template>
 
 <script lang="ts" setup>
+const { modelValue } = defineProps(['modelValue']);
+const emit = defineEmits(['update:modelValue']);
+
 const lessonStore = useLessonStore();
 
 const { lesson } = storeToRefs(lessonStore);
-const content = ref('print("Hello World")');
+const content = ref(modelValue);
+
+watch(content, () => {
+  emit('update:modelValue', content);
+});
 
 const options = {
   theme: 'vs-dark',

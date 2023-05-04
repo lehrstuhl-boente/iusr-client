@@ -18,7 +18,7 @@
         <RichtextEditor v-model="lesson.task" />
       </div>
       <div class="w-1/3 h-full flex flex-col">
-        <CodeEditor class="h-full" />
+        <CodeEditor v-model="lesson.code" class="h-full" />
         <div class="p-2 mt-auto bg-dark flex items-center justify-end">
           <span class="material-icons-outlined text-white icon-btn icon-btn-light mr-auto">open_in_full</span>
           <LanguageSelect class="ml-3" />
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="p-2 w-1/3 justify-self-end bg-black text-white overflow-auto">
-        <div v-for="n in 50">Hello</div>
+        Output
       </div>
     </div>
     <div class="flex justify-end items-center mt-auto p-2 bg-dark w-full text-white" style="height: 60px;">

@@ -18,6 +18,4 @@
   if(lesson.value && !lesson.value.lang) {
     lesson.value.lang = 'python';
   }
-
-  const selected = ref('python');
 </script>
