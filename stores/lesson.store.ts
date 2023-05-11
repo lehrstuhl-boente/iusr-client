@@ -5,11 +5,21 @@ interface LessonStoreState {
 interface Lesson {
   id: number;
   title: string;
-  chapterId: number;
+  chapter: Chapter;
   lang: string;
   task: string;
   code: string;
+  position: number;
   userData: UserLesson; // data specific to the logged in user
+  next: number;
+  previous: number;
+}
+
+interface Chapter {
+  id: number;
+  title: string;
+  description: string;
+  position: number;
 }
 
 interface UserLesson {
@@ -36,6 +46,7 @@ export const useLessonStore = defineStore('lesson-store', {
         useNotification('danger', 'Could not fetch lesson.');
       }
     },
+    // saves everything except the user data (--> used in admin editor)
     async save() {
       if (!this.lesson) {
         useNotification('danger', 'Cannot save without loaded lesson.');
@@ -48,6 +59,8 @@ export const useLessonStore = defineStore('lesson-store', {
         useNotification('danger', 'Could not save lesson.');
       }
     },
+    // save only user data (--> used in user editor)
+    async saveUserData() {},
     // this method is used when the store is already populated but the same course data should be updated
     /* async update() {
       if (!this.lesson) {

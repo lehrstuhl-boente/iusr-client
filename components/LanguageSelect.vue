@@ -1,6 +1,6 @@
 <template>
   <!-- possible values according to dropdown of example editor: https://microsoft.github.io/monaco-editor/ -->
-  <select v-model="lesson.lang" v-if="lesson" class="bg-dark text-white m-0">
+  <select v-model="lesson.lang" v-if="lesson" class="bg-dark text-white m-0 border-opacity-40">
     <option value="python">Python</option>
     <option value="r">R</option>
     <option value="javascript">JavaScript</option>
@@ -10,12 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-  const lessonStore = useLessonStore();
+const lessonStore = useLessonStore();
 
-  const { lesson } = storeToRefs(lessonStore);
-
-  // python is selected by default if no language specified
-  if(lesson.value && !lesson.value.lang) {
-    lesson.value.lang = 'python';
-  }
+const { lesson } = storeToRefs(lessonStore);
 </script>
