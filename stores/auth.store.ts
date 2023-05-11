@@ -3,25 +3,25 @@ interface AuthStoreState {
 }
 
 interface User {
-  email: string;
+  username: string;
   isAdmin: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
 
 interface Login {
-  email: string;
+  username: string;
   password: string;
 }
 
 interface Register {
-  email: string;
+  username: string;
   password: string;
   passwordRepeat: string;
 }
 
 interface LoginUserDto {
-  email: string;
+  username: string;
   isAdmin: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -37,7 +37,7 @@ export const useAuthStore = defineStore('auth-store', {
   actions: {
     async login(credentials: Login) {
       const { data } = await useApi().post<LoginUserDto>('/auth/login', {
-        email: credentials.email,
+        username: credentials.username,
         password: credentials.password,
       });
       localStorage.setItem('token', data.accessToken);
@@ -46,7 +46,7 @@ export const useAuthStore = defineStore('auth-store', {
     },
     async register(credentials: Register) {
       const { data } = await useApi().post<LoginUserDto>('/auth/register', {
-        email: credentials.email,
+        username: credentials.username,
         password: credentials.password,
         passwordRepeat: credentials.passwordRepeat,
       });

@@ -7,7 +7,7 @@
           <li>
             <NuxtLink to="/profile" class="flex">
               <span class="material-icons-outlined mr-1">account_circle</span>
-              {{ authStore.user?.email }}
+              {{ authStore.user?.username }}
             </NuxtLink>
           </li>
           <li>

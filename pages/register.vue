@@ -3,8 +3,8 @@
     <h2 class="mt-0 text-center mb-5">Register</h2>
     <form action="">
       <label>
-        <span>Email</span>
-        <input type="text" placeholder="john.doe@uzh.ch" v-model="email">
+        <span>Username</span>
+        <input type="text" v-model="username">
       </label>
       <label>
         <span>Password</span>
@@ -33,7 +33,7 @@ definePageMeta({
 
 const authStore = useAuthStore();
 
-const email = ref('');
+const username = ref('');
 const password = ref('');
 const passwordRepeat = ref('');
 const errorMessages = ref();
@@ -41,7 +41,7 @@ const errorMessages = ref();
 const register = async () => {
   try {
     await authStore.register({
-      email: email.value,
+      username: username.value,
       password: password.value,
       passwordRepeat: passwordRepeat.value
     });

@@ -19,7 +19,8 @@
         <span class="material-icons-outlined icon-btn invisible" v-else>arrow_downward</span>
       </div>
       <div v-else class="ml-auto">
-        <NuxtLink :to="`/course/${courseStore.courseId}/lesson/${lesson.id}`" class="inline-flex items-center">
+        <NuxtLink :to="`/course/${courseStore.courseId}/lesson/${lesson.id}`"
+          class="icon-btn icon-btn-primary pl-3 inline-flex items-center">
           Open <span class="material-icons-outlined">play_arrow</span>
         </NuxtLink>
       </div>

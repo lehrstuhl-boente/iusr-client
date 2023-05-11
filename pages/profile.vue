@@ -1,14 +1,11 @@
 <template>
-  <Teleport to="#backbutton">
-    <BackLink to="/dashboard" />
-  </Teleport>
   <h1>My Profile</h1>
   <div v-if="!user">
     {{ error }}
   </div>
   <div v-else>
     <div>
-      <strong>Email:</strong> {{ user.email }}
+      <strong>Username:</strong> {{ user.username }}
     </div>
     <div>
       <strong>Joined:</strong> {{ user.createdAt }}

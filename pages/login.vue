@@ -3,8 +3,8 @@
     <h2 class="mt-0 text-center mb-5">Login</h2>
     <form action="">
       <label>
-        <span>Email</span>
-        <input type="text" placeholder="john.doe@uzh.ch" v-model="email">
+        <span>Username</span>
+        <input type="text" v-model="username">
       </label>
       <label>
         <span>Password</span>
@@ -29,13 +29,13 @@ definePageMeta({
 
 const authStore = useAuthStore();
 
-const email = ref('');
+const username = ref('');
 const password = ref('');
 const errorMessages = ref();
 
 const login = async () => {
   try {
-    await authStore.login({ email: email.value, password: password.value });
+    await authStore.login({ username: username.value, password: password.value });
   } catch (e: any) {
     console.log(Object.values(e.response.data))
     errorMessages.value = Object.values(e.response.data).flat(1);
