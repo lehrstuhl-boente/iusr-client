@@ -19,10 +19,11 @@
         <RichtextEditor v-model="lesson.task" :readonly="true" />
       </div>
       <div class="w-1/3 h-full flex flex-col">
-        <CodeEditor v-model="lesson.code" class="h-full" />
+        <CodeEditor v-model="lesson.userData.code" class="h-full" />
         <div class="p-2 mt-auto bg-dark flex items-center justify-end">
           <!-- <span class="material-icons-outlined text-white icon-btn icon-btn-light mr-auto">open_in_full</span> -->
-          <!-- <span class="material-icons-outlined ml-2 text-white icon-btn icon-btn-light">restart_alt</span> -->
+          <span class="material-icons-outlined ml-2 text-white icon-btn icon-btn-light"
+            @click="resetCode">restart_alt</span>
           <button class="btn btn-primary ml-3">Run</button>
         </div>
       </div>
@@ -68,6 +69,14 @@ const closeLesson = () => {
 
 const saveLesson = async () => {
   await lessonStore.save();
+}
+
+const resetCode = () => {
+  if (confirm("Do you really want to reset your code?")) {
+    if (lesson.value) {
+      lesson.value.userData.code = lesson.value.code;
+    }
+  }
 }
 </script>
 

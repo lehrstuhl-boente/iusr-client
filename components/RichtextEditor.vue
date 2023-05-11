@@ -42,7 +42,7 @@ onMounted(() => {
 
   const quill = new Quill('.editor', options);
 
-  // set initial text; TODO: despite on the first load, changes in the content cannot be passed down
+  // set initial text; TODO: currently changes in the content cannot be passed down except on the first load
   quill.pasteHTML(modelValue);
 
   quill.on('text-change', (delta, onDelta, source) => {
