@@ -8,30 +8,36 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import 'highlight.js/styles/atom-one-dark.css';
 
-const { modelValue } = defineProps(['modelValue']);
+const { modelValue, readonly } = defineProps(['modelValue', 'readonly']);
 const emit = defineEmits(['update:modelValue']);
 
 onMounted(() => {
+  let toolbar = false;
+  if (!readonly) {
+    toolbar = [
+      [{ 'header': [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      ['link'],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      ['blockquote'],
+      ['code'],
+      ['code-block'],
+      ['clean']
+    ];
+  }
+
   const options = {
     theme: 'snow',
     modules: {
       syntax: {
         highlight: text => hljs.highlightAuto(text).value
       },
-      toolbar: [
-        [{ 'header': [1, 2, 3, false] }],
-        ['bold', 'italic', 'underline', 'strike'],
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'align': [] }],
-        ['link'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        ['blockquote'],
-        ['code'],
-        ['code-block'],
-        ['clean']
-      ]
+      toolbar
     },
-    placeholder: 'Lecture content here ...'
+    placeholder: 'Lecture content here ...',
+    readOnly: readonly,
   };
 
   const quill = new Quill('.editor', options);
@@ -46,7 +52,7 @@ onMounted(() => {
 </script>
 
 <style lang="postcss">
-  .ql-snow .ql-editor code {
-    @apply bg-gray-200;
-  }
+.ql-snow .ql-editor code {
+  @apply bg-gray-200;
+}
 </style>

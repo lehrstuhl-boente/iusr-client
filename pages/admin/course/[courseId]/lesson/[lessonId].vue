@@ -16,7 +16,7 @@
     </header>
     <div class="flex h-[calc(100%_-_120px)]">
       <div class="w-1/3 flex flex-col">
-        <RichtextEditor v-model="lesson.task" />
+        <RichtextEditor v-model="lesson.task" :readonly="false" />
       </div>
       <div class="w-1/3 h-full flex flex-col">
         <CodeEditor v-model="lesson.code" class="h-full" />
