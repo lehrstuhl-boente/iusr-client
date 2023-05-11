@@ -1,7 +1,4 @@
 <template>
-  <Teleport to="#backbutton">
-    <BackLink to="/dashboard" />
-  </Teleport>
   <template v-if="course">
     <div class="flex items-center justify-between mt-5 mb-6">
       <h1>{{ course.title }}</h1>

@@ -1,10 +1,8 @@
 <template>
-  <Teleport to="#backbutton">
-    <BackLink :to="'/course/' + route.params.courseId" />
-  </Teleport>
   <template v-if="course">
-    <div class="flex mt-5 mb-6">
+    <div class="flex items-center justify-between mt-5 mb-6">
       <h1>Edit Course</h1>
+      <NuxtLink :to="'/course/' + route.params.id" class="btn">View Course</NuxtLink>
     </div>
     <div class="flex flex-row lg:flex-nowrap flex-wrap-reverse gap-10">
       <div class="lg:basis-8/12 w-full">
