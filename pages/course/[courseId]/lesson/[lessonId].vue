@@ -33,11 +33,14 @@
           <LanguageSelect class="ml-1" v-if="authStore.isAdmin" />
           <span class="material-icons-outlined ml-2 text-white icon-btn icon-btn-light" @click="resetCode"
             v-if="!authStore.isAdmin">restart_alt</span>
-          <button class="btn btn-primary ml-3">Run</button>
+          <button class="btn btn-primary ml-3" style="width: 70px" @click="submitCode">
+            <span v-if="!submitButtonIdle">Run</span>
+            <LoadingSpinner v-else />
+          </button>
         </div>
       </div>
-      <div class="p-2 w-1/3 justify-self-end bg-black text-white overflow-auto">
-        Output
+      <div class="p-2 w-1/3 justify-self-end bg-black text-white overflow-auto font-mono">
+        <pre>Output</pre>
       </div>
     </div>
     <div class="flex justify-end items-center mt-auto p-2 bg-dark w-full text-white" style="height: 60px;">
@@ -67,6 +70,7 @@ const { course } = storeToRefs(courseStore);
 const { lesson } = storeToRefs(lessonStore);
 
 const showSidebar = ref(false);
+const submitButtonIdle = ref(false);
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 await lessonStore.getLesson(parseInt(route.params.lessonId as string));
@@ -98,6 +102,19 @@ const resetCode = () => {
     if (lesson.value) {
       lesson.value.userData.code = lesson.value.code;
     }
+  }
+}
+
+const submitCode = async () => {
+  if (lesson.value) {
+    try {
+      submitButtonIdle.value = true;
+      const res = await useApi().post('/lessons/' + lesson.value.id);
+    } catch (e) {
+      useNotification('danger', 'Code Submission Failed');
+      console.error(e);
+    }
+    submitButtonIdle.value = false;
   }
 }
 </script>
