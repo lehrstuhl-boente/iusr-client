@@ -63,7 +63,7 @@ await lessonStore.getLesson(parseInt(route.params.lessonId as string));
 
 const closeLesson = () => {
   if (confirm('Do you want to close this lesson? All unsaved changes will be lost.')) {
-    navigateTo('/admin/course/' + route.params.courseId);
+    navigateTo('/course/' + route.params.courseId);
   }
 }
 
