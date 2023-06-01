@@ -9,6 +9,7 @@ interface Lesson {
   lang: string;
   task: string;
   code: string;
+  solution: string;
   position: number;
   userData: UserLesson; // data specific to the logged in user
   next: number;

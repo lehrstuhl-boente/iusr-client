@@ -30,7 +30,8 @@
         <CodeEditor v-model="lesson.userData.code" class="h-full" v-if="!authStore.isAdmin" />
         <div class="p-2 mt-auto bg-dark flex items-center justify-end">
           <!-- <span class="material-icons-outlined text-white icon-btn icon-btn-light mr-auto">open_in_full</span> -->
-          <LanguageSelect class="ml-1" v-if="authStore.isAdmin" />
+          <button class="btn ml-1" @click="showSolutionModal = true">Solution</button>
+          <LanguageSelect class="ml-3" v-if="authStore.isAdmin" />
           <span class="material-icons-outlined ml-2 text-white icon-btn icon-btn-light" @click="resetCode"
             v-if="!authStore.isAdmin">restart_alt</span>
           <button class="btn btn-primary ml-3" style="width: 70px" @click="submitCode">
@@ -53,6 +54,7 @@
     </div>
   </div>
   <div v-else>Could not load course or lesson.</div>
+  <ModalsSolutionCode :show="showSolutionModal" @close="showSolutionModal = false" />
 </template>
 
 <script lang="ts" setup>
@@ -71,6 +73,7 @@ const { lesson } = storeToRefs(lessonStore);
 
 const showSidebar = ref(false);
 const submitButtonIdle = ref(false);
+const showSolutionModal = ref(true);
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 await lessonStore.getLesson(parseInt(route.params.lessonId as string));
@@ -109,7 +112,10 @@ const submitCode = async () => {
   if (lesson.value) {
     try {
       submitButtonIdle.value = true;
-      const res = await useApi().post('/lessons/' + lesson.value.id);
+      await useApi().post('/lessons/' + lesson.value.id, {
+        code: authStore.isAdmin ? lesson.value.code : lesson.value.userData.code,
+        lang: lesson.value.lang
+      });
     } catch (e) {
       useNotification('danger', 'Code Submission Failed');
       console.error(e);

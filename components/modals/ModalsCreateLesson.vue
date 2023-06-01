@@ -42,7 +42,7 @@ const createChapter = async () => {
       title: title.value,
       chapterId: chapter.id
     });
-    navigateTo('/admin/course/' + course.id + '/lesson/' + data.id);
+    navigateTo('/course/' + course.id + '/lesson/' + data.id);
     useNotification('success', 'Lesson created.');
   } catch (e) {
     useNotification('danger', 'Could not create lesson.');

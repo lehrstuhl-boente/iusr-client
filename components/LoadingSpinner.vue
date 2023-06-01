@@ -11,7 +11,7 @@
 .lds-ellipsis {
   display: inline-block;
   position: relative;
-  width: 40px;
+  width: 37px;
   height: 14px;
 }
 
