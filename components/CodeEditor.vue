@@ -4,7 +4,10 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps(['modelValue']);
+const props = defineProps({
+  modelValue: { required: true, type: String },
+  readOnly: { default: false, type: Boolean }
+});
 const emit = defineEmits(['update:modelValue']);
 
 const lessonStore = useLessonStore();
@@ -28,6 +31,7 @@ const options = {
     bottom: 10,
   },
   fontSize: 14,
-  automaticLayout: true
+  automaticLayout: true,
+  readOnly: props.readOnly
 };
 </script>

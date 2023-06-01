@@ -30,7 +30,7 @@
         <CodeEditor v-model="lesson.userData.code" class="h-full" v-if="!authStore.isAdmin" />
         <div class="p-2 mt-auto bg-dark flex items-center justify-end">
           <!-- <span class="material-icons-outlined text-white icon-btn icon-btn-light mr-auto">open_in_full</span> -->
-          <button class="btn ml-1" @click="showSolutionModal = true">Solution</button>
+          <button class="btn ml-1 mr-auto" @click="showSolutionModal = true">Solution</button>
           <LanguageSelect class="ml-3" v-if="authStore.isAdmin" />
           <span class="material-icons-outlined ml-2 text-white icon-btn icon-btn-light" @click="resetCode"
             v-if="!authStore.isAdmin">restart_alt</span>
