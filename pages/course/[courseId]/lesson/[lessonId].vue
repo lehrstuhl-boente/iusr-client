@@ -6,9 +6,17 @@
     <header class="flex items-center text-white bg-dark z-10 px-2" style="height: 60px;">
       <div class="w-1/3 flex items-center">
         <button class="material-icons-outlined mr-1 icon-btn icon-btn-light" @click="showSidebar = true">menu</button>
-        <div class="ml-2">
-          <div class="opacity-50 text-xs">Chapter {{ lesson.chapter.position }}: {{ lesson.chapter.title }}</div>
-          <div class="text-sm">Lesson {{ lesson.position }}: {{ lesson.title }}</div>
+        <div class="flex items-center ml-2">
+          <span class="material-icons-outlined mr-3 text-green-500" v-if="lesson.userData.completed">
+            check_circle
+          </span>
+          <span class="material-icons-outlined mr-3 text-gray-300" v-else>
+            radio_button_unchecked
+          </span>
+          <div>
+            <div class="opacity-50 text-xs">Chapter {{ lesson.chapter.position }}: {{ lesson.chapter.title }}</div>
+            <div class="text-sm">Lesson {{ lesson.position }}: {{ lesson.title }}</div>
+          </div>
         </div>
       </div>
       <div class="w-1/3 text-center">
@@ -73,7 +81,7 @@ const { lesson } = storeToRefs(lessonStore);
 
 const showSidebar = ref(false);
 const submitButtonIdle = ref(false);
-const showSolutionModal = ref(true);
+const showSolutionModal = ref(false);
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 await lessonStore.getLesson(parseInt(route.params.lessonId as string));
@@ -112,10 +120,13 @@ const submitCode = async () => {
   if (lesson.value) {
     try {
       submitButtonIdle.value = true;
-      await useApi().post('/lessons/' + lesson.value.id, {
+      const response = await useApi().post('/lessons/' + lesson.value.id, {
         code: authStore.isAdmin ? lesson.value.code : lesson.value.userData.code,
         lang: lesson.value.lang
       });
+      if (response.data === true) {
+        lesson.value.userData.completed = true;
+      }
     } catch (e) {
       useNotification('danger', 'Code Submission Failed');
       console.error(e);

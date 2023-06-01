@@ -39,10 +39,7 @@ export const useCourseStore = defineStore('course-store', {
     // this method is used when the store is already populated but the same course data should be updated
     async update() {
       if (!this.course) {
-        useNotification(
-          'danger',
-          'Cannot update course when no course is loaded.'
-        );
+        useNotification('danger', 'Cannot update course when no course is loaded.');
         return;
       }
       await this.getCourse(this.course.id);
