@@ -1,7 +1,15 @@
 <template>
   <div>
     <div class="flex items-center px-2 border-t first:border-t-0">
-      <div class="mr-1 text-primary" style="min-width: 30px;">Lesson {{ lesson.position }}</div>
+      <div class="mr-1 text-primary" style="min-width: 30px;" v-if="editable">Lesson {{ lesson.position }}</div>
+      <template v-else>
+        <span class="material-icons-outlined text-green-500" v-if="lesson.userData[0].completed">
+          check_circle
+        </span>
+        <span class="material-icons-outlined text-gray-300" v-else>
+          radio_button_unchecked
+        </span>
+      </template>
       <div class="p-2"><strong>{{ lesson.title }}</strong></div>
       <div v-if="editable" class="ml-auto">
         <span class="material-icons-outlined icon-btn icon-btn-danger" @click="deleteLesson">delete</span>

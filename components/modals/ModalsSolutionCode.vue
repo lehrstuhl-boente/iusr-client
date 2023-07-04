@@ -1,5 +1,5 @@
 <template>
-  <Modal :show="show" @close="$emit('close')" size="xl" :full-height="true" title="Solution Code">
+  <Modal :show="show" @close="$emit('close')" size="3xl" :full-height="true" title="Solution Code">
     <CodeEditor v-model="lesson.solution" class="h-full" :read-only="!authStore.isAdmin" />
   </Modal>
 </template>
