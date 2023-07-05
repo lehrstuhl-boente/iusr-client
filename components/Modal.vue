@@ -9,8 +9,7 @@
             :class="`flex flex-col bg-white max-w-${size} mx-auto rounded-md px-6 pt-5 pb-6 shadow-xl ${fullHeight ? 'h-full' : ''}`">
             <div class="flex justify-between items-center">
               <h3 class="text-lg font-bold">{{ title }}</h3>
-              <span class="material-icons-outlined hover:cursor-pointer hover:text-primary"
-                @click="closeModal">close</span>
+              <span class="material-icons-outlined icon-btn icon-btn-primary" @click="closeModal">close</span>
             </div>
             <div class="mt-4 h-full">
               <slot />

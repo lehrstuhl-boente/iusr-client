@@ -70,6 +70,9 @@
   :disabled {
     @apply opacity-50;
   }
+  .pre-formatted {
+    white-space: pre;
+  }
 }
 
 .router-link-exact-active {

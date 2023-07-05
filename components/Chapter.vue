@@ -7,7 +7,7 @@
         <span class="material-icons-outlined arrow relative z-0" :class="{ active: showDetails }">expand_more</span>
       </h3>
       <div v-show="showDetails" class="pt-0 pb-3 px-4">
-        <div class="muted">{{ chapter.description }}</div>
+        <div class="muted pre-formatted">{{ chapter.description }}</div>
         <div class="mt-3" v-if="editable">
           <span class="material-icons-outlined icon-btn icon-btn-danger danger" :class="{ active: showDetails }"
             @click="deleteChapter">delete</span>
