@@ -23,7 +23,7 @@ const { show, chapter } = defineProps({
 });
 const emit = defineEmits(['close']);
 
-const { course } = useCourseStore();
+const courseStore = useCourseStore();
 
 const title = ref('');
 
@@ -38,12 +38,13 @@ const createChapter = async () => {
     return;
   }
   try {
-    const { data } = await useApi().post('/lessons', {
+    await useApi().post('/lessons', {
       title: title.value,
       chapterId: chapter.id
     });
-    navigateTo('/course/' + course.id + '/lesson/' + data.id);
+    courseStore.update();
     useNotification('success', 'Lesson created.');
+    close();
   } catch (e) {
     useNotification('danger', 'Could not create lesson.');
     console.error(e);

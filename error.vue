@@ -8,11 +8,9 @@
 </template>
 
 <script setup>
-  defineProps(['error']);
+defineProps(['error']);
 
-  const handleClearError = () => clearError({ redirect: '/' });
+const handleClearError = () => clearError({ redirect: '/' });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

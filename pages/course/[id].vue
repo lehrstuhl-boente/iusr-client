@@ -16,6 +16,7 @@
       </div>
     </div>
   </template>
+  <div v-else>Could not load course.</div>
 </template>
 
 <script lang="ts" setup>
