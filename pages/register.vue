@@ -46,7 +46,12 @@ const register = async () => {
       confirmPassword: confirmPassword.value
     });
   } catch (e: any) {
-    errorMessages.value = Object.values(e.response.data).flat(1);
+    console.log(e.response.data.status)
+    if (e.response.data.statusCode === 400) {
+      useNotification('danger', e.response.data.message[0]);
+    } else {
+      useNotification('danger', 'Registration failed.');
+    }
   }
 };
 </script>

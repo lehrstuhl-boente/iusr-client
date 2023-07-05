@@ -37,8 +37,7 @@ const login = async () => {
   try {
     await authStore.login({ username: username.value, password: password.value });
   } catch (e: any) {
-    console.log(Object.values(e.response.data))
-    errorMessages.value = Object.values(e.response.data).flat(1);
+    useNotification('danger', 'Login failed.');
   }
 };
 </script>
