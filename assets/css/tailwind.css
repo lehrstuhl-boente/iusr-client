@@ -70,8 +70,8 @@
   :disabled {
     @apply opacity-50;
   }
-  .pre-formatted {
-    white-space: pre;
+  .nl2br {
+    white-space: pre-wrap;
   }
 }
 

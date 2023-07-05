@@ -11,7 +11,7 @@
       </div>
       <div class="lg:basis-4/12 w-full">
         <span class="muted">Description</span>
-        <div v-if="course.description" class="pre-formatted">{{ course.description }}</div>
+        <div v-if="course.description" class="nl2br">{{ course.description }}</div>
         <div v-else>No description.</div>
       </div>
     </div>
