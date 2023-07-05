@@ -48,7 +48,11 @@
           </button>
         </div>
       </div>
-      <div class="p-2 w-1/3 justify-self-end bg-black text-white overflow-auto font-mono">
+      <div class="p-2 w-1/3 justify-self-end bg-black text-white overflow-auto">
+        <div class="mb-3" v-if="correctSolution !== null">
+          <div v-if="correctSolution">Your solution is correct ✅</div>
+          <div v-else>Your solution is not correct ❌</div>
+        </div>
         <pre>Output</pre>
       </div>
     </div>
@@ -82,6 +86,7 @@ const { lesson } = storeToRefs(lessonStore);
 const showSidebar = ref(false);
 const submitButtonIdle = ref(false);
 const showSolutionModal = ref(false);
+const correctSolution = ref(null);
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 await lessonStore.getLesson(parseInt(route.params.lessonId as string));
@@ -124,7 +129,11 @@ const submitCode = async () => {
         code: authStore.isAdmin ? lesson.value.code : lesson.value.userData.code,
         lang: lesson.value.lang
       });
+      correctSolution.value = response.data;
       if (response.data === true) {
+        if (lesson.value.userData.completed !== true) { // correct solution for the first time
+          useNotification('success', 'You have completed this lesson!');
+        }
         lesson.value.userData.completed = true;
       }
     } catch (e) {
