@@ -17,7 +17,7 @@ interface Login {
 interface Register {
   username: string;
   password: string;
-  passwordRepeat: string;
+  confirmPassword: string;
 }
 
 interface LoginUserDto {
@@ -48,7 +48,7 @@ export const useAuthStore = defineStore('auth-store', {
       const { data } = await useApi().post<LoginUserDto>('/auth/register', {
         username: credentials.username,
         password: credentials.password,
-        passwordRepeat: credentials.passwordRepeat,
+        confirmPassword: credentials.confirmPassword,
       });
       localStorage.setItem('token', data.accessToken);
       this.user = data;

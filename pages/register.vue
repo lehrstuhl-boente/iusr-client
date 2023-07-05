@@ -12,7 +12,7 @@
       </label>
       <label>
         <span>Confirm Password</span>
-        <input type="password" v-model="passwordRepeat">
+        <input type="password" v-model="confirmPassword">
       </label>
       <input type="submit" class="btn mt-3 w-full" @click.prevent="register" value="Register">
     </form>
@@ -35,7 +35,7 @@ const authStore = useAuthStore();
 
 const username = ref('');
 const password = ref('');
-const passwordRepeat = ref('');
+const confirmPassword = ref('');
 const errorMessages = ref();
 
 const register = async () => {
@@ -43,7 +43,7 @@ const register = async () => {
     await authStore.register({
       username: username.value,
       password: password.value,
-      passwordRepeat: passwordRepeat.value
+      confirmPassword: confirmPassword.value
     });
   } catch (e: any) {
     errorMessages.value = Object.values(e.response.data).flat(1);
