@@ -33,11 +33,14 @@
       <div class="w-1/3 flex flex-col">
         <RichtextEditor v-model="lesson.task" :readonly="!authStore.isAdmin" />
       </div>
-      <div class="w-1/3 h-full flex flex-col">
+      <div class="w-1/3 h-full relative flex flex-col" :class="{ full: expandedCodeEditor }">
         <CodeEditor v-model="lesson.code" class="h-full" v-if="authStore.isAdmin" />
-        <CodeEditor v-model="lesson.userData.code" class="h-full" v-if="!authStore.isAdmin" />
+        <CodeEditor v-model="lesson.userData.code" class="h-full" v-else />
         <div class="p-2 mt-auto bg-dark flex items-center justify-end">
-          <!-- <span class="material-icons-outlined text-white icon-btn icon-btn-light mr-auto">open_in_full</span> -->
+          <span @click="expandedCodeEditor = !expandedCodeEditor;" class="text-white">
+            <span class="material-icons-outlined icon-btn icon-btn-light" v-if="!expandedCodeEditor">open_in_full</span>
+            <span class="material-icons-outlined icon-btn icon-btn-light" v-else>close_fullscreen</span>
+          </span>
           <button class="btn ml-1 mr-auto" @click="showSolutionModal = true">Solution</button>
           <LanguageSelect class="ml-3" v-if="authStore.isAdmin" />
           <span class="material-icons-outlined ml-2 text-white icon-btn icon-btn-light" @click="resetCode"
@@ -87,6 +90,7 @@ const showSidebar = ref(false);
 const submitButtonIdle = ref(false);
 const showSolutionModal = ref(false);
 const correctSolution = ref(null);
+const expandedCodeEditor = ref(false);
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
 await lessonStore.getLesson(parseInt(route.params.lessonId as string));
@@ -145,8 +149,14 @@ const submitCode = async () => {
 }
 </script>
 
-<style>
+<style lang="postcss" scoped>
 .ql-container {
   overflow: auto;
+}
+
+.full {
+  @apply w-11/12;
+  bottom: 60px;
+  margin-top: 60px;
 }
 </style>

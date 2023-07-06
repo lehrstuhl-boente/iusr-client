@@ -3,7 +3,7 @@
     class="bg-white shadow hover:shadow-md active:shadow-sm rounded-md overflow-hidden hover:cursor-pointer">
     <div class="px-3 py-1 bg-primary/10 flex justify-between items-center">
       <span class="font-bold text-primary">{{ progress }}%</span>
-      <span class="text-xs muted">{{ course.lessonsCompleted }}/{{ course.lessonsTotal }} Lessons
+      <span class="text-xs text-primary/50">{{ course.lessonsCompleted }}/{{ course.lessonsTotal }} Lessons
         Completed</span>
     </div>
     <div>
@@ -11,9 +11,7 @@
     </div>
     <div class="content p-3">
       <strong>{{ course.title }}</strong>
-      <p class="muted leading-5 line-clamp-2">
-        {{ course.description }}
-      </p>
+      <div class="muted leading-5 line-clamp-2 text-sm">{{ course.description }}</div>
     </div>
   </NuxtLink>
 </template>
