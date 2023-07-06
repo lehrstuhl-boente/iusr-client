@@ -56,12 +56,12 @@
           <div v-if="correctSolution">Your solution is correct ✅</div>
           <div v-else>Your solution is not correct ❌</div>
         </div>
-        <div v-if="codeResult">
+        <div v-if="codeResult && Object.hasOwn(codeResult, 'time')">
           <div>Time: {{ codeResult.time }}s</div>
           <div>{{ codeResult.message }} ({{ codeResult.status.description }})</div>
           <div class="overflow-auto text-sm mt-4 border-t-[1px] pt-2">
             <pre class="p-1" v-if="codeResult.stderr">{{ codeResult.stderr }}</pre>
-            <pre class="p-1" v-if="codeResult.stdout"></pre>
+            <pre class="p-1" v-if="codeResult.stdout">{{ codeResult.stdout }}</pre>
           </div>
         </div>
       </div>
