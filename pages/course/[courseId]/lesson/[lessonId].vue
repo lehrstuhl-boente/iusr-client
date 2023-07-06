@@ -45,18 +45,25 @@
           <LanguageSelect class="ml-3" v-if="authStore.isAdmin" />
           <span class="material-icons-outlined ml-2 text-white icon-btn icon-btn-light" @click="resetCode"
             v-if="!authStore.isAdmin">restart_alt</span>
-          <button class="btn btn-primary ml-3" style="width: 70px" @click="submitCode">
+          <button class="btn btn-primary ml-3 flex-shrink-0" style="width: 70px" @click="submitCode">
             <span v-if="!submitButtonIdle">Run</span>
             <LoadingSpinner v-else />
           </button>
         </div>
       </div>
-      <div class="p-2 w-1/3 justify-self-end bg-black text-white overflow-auto">
+      <div class="p-2 w-1/3 justify-self-end bg-black text-white">
         <div class="mb-3" v-if="correctSolution !== null">
           <div v-if="correctSolution">Your solution is correct ✅</div>
           <div v-else>Your solution is not correct ❌</div>
         </div>
-        <pre>Output</pre>
+        <div v-if="codeResult">
+          <div>Time: {{ codeResult.time }}s</div>
+          <div>{{ codeResult.message }} ({{ codeResult.status.description }})</div>
+          <div class="overflow-auto text-sm mt-4 border-t-[1px] pt-2">
+            <pre class="p-1" v-if="codeResult.stderr">{{ codeResult.stderr }}</pre>
+            <pre class="p-1" v-if="codeResult.stdout"></pre>
+          </div>
+        </div>
       </div>
     </div>
     <div class="flex justify-end items-center mt-auto p-2 bg-dark w-full text-white" style="height: 60px;">
@@ -90,6 +97,7 @@ const showSidebar = ref(false);
 const submitButtonIdle = ref(false);
 const showSolutionModal = ref(false);
 const correctSolution = ref(null);
+const codeResult = ref<any>(null);
 const expandedCodeEditor = ref(false);
 
 await courseStore.getCourse(parseInt(route.params.courseId as string));
@@ -133,8 +141,9 @@ const submitCode = async () => {
         code: authStore.isAdmin ? lesson.value.code : lesson.value.userData.code,
         lang: lesson.value.lang
       });
-      correctSolution.value = response.data;
-      if (response.data === true) {
+      correctSolution.value = response.data.isCorrect;
+      codeResult.value = response.data.result;
+      if (response.data.isCorrect === true) {
         if (lesson.value.userData.completed !== true) { // correct solution for the first time
           useNotification('success', 'You have completed this lesson!');
         }
