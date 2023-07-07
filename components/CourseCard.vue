@@ -22,7 +22,7 @@ import { CourseDto } from '~~/types';
 
 const { course } = defineProps<{ course: CourseDto }>();
 
-const progress = Math.round((course.lessonsCompleted / course.lessonsTotal) * 100);
+const progress = Math.round((course.lessonsCompleted / course.lessonsTotal) * 100) || 0;
 </script>
 
 <style scoped>

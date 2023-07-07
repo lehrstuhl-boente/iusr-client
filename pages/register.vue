@@ -46,7 +46,7 @@ const register = async () => {
       confirmPassword: confirmPassword.value
     });
   } catch (e: any) {
-    if (e.response.data.statusCode === 400) {
+    if (e.response && e.response.data.statusCode === 400) {
       useNotification('danger', e.response.data.message[0]);
     } else {
       useNotification('danger', 'Registration failed.');

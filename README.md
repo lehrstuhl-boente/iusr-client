@@ -12,7 +12,7 @@ Frontend for an open source code learning platform.
 
 ### Production Environment
 
-TODO
+Node.js Version 18.14
 
 ## Techstack
 
