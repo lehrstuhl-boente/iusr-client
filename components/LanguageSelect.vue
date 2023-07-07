@@ -1,6 +1,6 @@
 <template>
   <!-- possible values according to dropdown of example editor: https://microsoft.github.io/monaco-editor/ -->
-  <select v-model="lesson.lang" v-if="lesson" class="bg-dark text-white m-0 border-opacity-40 text-sm">
+  <select v-model="lesson.lang" v-if="lesson" class="bg-dark text-white m-0 border-opacity-40 text-sm p-[7px]">
     <option value="python">Python</option>
     <option value="r">R</option>
     <option value="javascript">JavaScript</option>

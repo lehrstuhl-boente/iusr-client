@@ -8,7 +8,7 @@
     <Transition name="slide"> <!-- sidebar slides in/out from the side -->
       <div class="absolute top-0 bg-white h-screen shadow-xl w-5/6 max-w-md z-30 overflow-y-auto" v-if="show">
         <div class="flex justify-between items-center sticky top-0 p-4 pb-3 bg-white">
-          <h2 class="my-0 mb-2">Course Structure</h2>
+          <h2 class="my-0">Course Structure</h2>
           <span class="material-icons-outlined icon-btn icon-btn-primary" @click="closeModal">close</span>
         </div>
         <div class="p-4">

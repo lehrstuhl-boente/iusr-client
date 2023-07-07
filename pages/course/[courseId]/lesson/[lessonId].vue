@@ -3,7 +3,7 @@
     <Sidebar :show="showSidebar" @close="showSidebar = false" />
   </Teleport>
   <div class="h-screen flex flex-col" v-if="course && lesson">
-    <header class="flex items-center text-white bg-dark z-10 px-2" style="height: 60px;">
+    <header class="flex items-center text-white bg-dark z-10 px-2 h-[60px]">
       <div class="w-1/3 flex items-center">
         <button class="material-icons-outlined mr-1 icon-btn icon-btn-light" @click="showSidebar = true">menu</button>
         <div class="flex items-center ml-2">
@@ -30,10 +30,10 @@
       </div>
     </header>
     <div class="flex h-[calc(100%_-_120px)]">
-      <div class="w-1/3 flex flex-col">
+      <div class="w-1/3 flex flex-col" :class="{ shrinked: expandedCodeEditor }">
         <RichtextEditor v-model="lesson.task" :readonly="!authStore.isAdmin" />
       </div>
-      <div class="w-1/3 h-full relative flex flex-col" :class="{ full: expandedCodeEditor }">
+      <div class="w-1/3 h-full relative flex flex-col" :class="{ expanded: expandedCodeEditor }">
         <CodeEditor v-model="lesson.code" class="h-full" v-if="authStore.isAdmin" />
         <CodeEditor v-model="lesson.userData.code" class="h-full" v-else />
         <div class="p-2 mt-auto bg-dark flex items-center justify-end">
@@ -51,7 +51,7 @@
           </button>
         </div>
       </div>
-      <div class="p-2 w-1/3 justify-self-end bg-black text-white">
+      <div class="p-2 w-1/3 justify-self-end bg-black text-white" :class="{ shrinked: expandedCodeEditor }">
         <div class="mb-3" v-if="correctSolution !== null">
           <div v-if="correctSolution">Your solution is correct ✅</div>
           <div v-else>Your solution is not correct ❌</div>
@@ -62,11 +62,13 @@
           <div class="overflow-auto text-sm mt-4 border-t-[1px] pt-2">
             <pre class="p-1" v-if="codeResult.stderr">{{ codeResult.stderr }}</pre>
             <pre class="p-1" v-if="codeResult.stdout">{{ codeResult.stdout }}</pre>
+            <pre class="p-1" v-if="codeResult.compile_output">{{ codeResult.compile_output }}</pre>
           </div>
         </div>
+        <div v-else-if="codeResult">Could not execute code.</div>
       </div>
     </div>
-    <div class="flex justify-end items-center mt-auto p-2 bg-dark w-full text-white" style="height: 60px;">
+    <div class="flex justify-end items-center mt-auto p-2 bg-dark w-full text-white h-[60px]">
       <button @click="closeLesson"
         class="inline-flex mr-auto py-2  px-3 rounded hover:bg-white hover:text-white hover:bg-opacity-10 active:bg-opacity-5">
         <span class="material-icons-outlined mr-1">close</span>Close
@@ -163,9 +165,11 @@ const submitCode = async () => {
   overflow: auto;
 }
 
-.full {
-  @apply w-11/12;
-  bottom: 60px;
-  margin-top: 60px;
+.expanded {
+  @apply w-2/3;
+}
+
+.shrinked {
+  @apply w-1/6;
 }
 </style>
