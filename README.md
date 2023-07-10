@@ -14,6 +14,10 @@ Frontend for an open source code learning platform.
 
 Node.js Version 18.14
 
+#### Run Docker Container
+
+`docker run -p 3002:3000 -e BASE_URL='http://localhost:3001/api' iusr-client`
+
 ## Techstack
 
 **Framework:** Nuxt.js 3, https://nuxt.com/
