@@ -7,8 +7,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
       target: prod
-    restart: no
-    expose:
-      - 3000:3000
+    restart: 'no'
+    ports:
+      - '3000:3000'
     env_file:
       - .env
