@@ -1,14 +1,9 @@
 import axios from 'axios';
 
 export const useApi = () => {
-  const config = useRuntimeConfig();
-  let baseURL = 'http://localhost:3001/api';
-  if (process.env.NODE_ENV == 'production') {
-    baseURL = '/api';
-  }
   const authStore = useAuthStore();
   const api = axios.create({
-    baseURL: baseURL,
+    baseURL: process.env.NODE_ENV == 'production' ? '/api' : 'http://localhost:3001/api',
   });
   api.interceptors.request.use((config) => {
     // append auth token to every request
