@@ -14,7 +14,12 @@ Frontend for an open source code learning platform.
 
 Node.js Version 18.14
 
-#### Run Docker Container
+#### Docker
+
+Build Docker image: `docker build -t iusr-client .`  
+Run Docker container: `docker run -p 3000:3000 -e BASE_URL='http://localhost:3001/api' iusr-client`
+
+#### Docker
 
 `docker run -p 3002:3000 -e BASE_URL='http://localhost:3001/api' iusr-client`
 
