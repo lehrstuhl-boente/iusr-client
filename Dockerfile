@@ -3,14 +3,9 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
-RUN npm run build
+RUN npx nuxi generate
 
-FROM node:18.14-buster as prod
-EXPOSE 3001
-ENV NODE_ENV=production
-WORKDIR /app
-RUN chown -R node /app
-USER node
-COPY --chown=node:node --from=builder /app/.output ./.output
-COPY --chown=node:node --from=builder /app/node_modules ./node_modules
-CMD ["node", ".output/server/index.mjs"]
+FROM nginx:1.21.1 as prod
+COPY ./default.conf.template /etc/nginx/templates/
+RUN useradd -r appuser
+COPY --chown=appuser:appuser --from=builder /app/.output/public /usr/share/nginx/html
