@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black p-8 pt-6 max-w-lg shadow rounded-lg mx-auto mt-10">
+  <div class="bg-white p-8 pt-6 max-w-lg shadow rounded-lg mx-auto mt-10">
     <h2 class="mt-0 text-center mb-5">Login</h2>
     <form action="">
       <label>
